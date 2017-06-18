@@ -1,0 +1,17 @@
+{
+  "presets": ["es2015", "stage-1", "react"],
+  "plugins": [
+    "transform-object-assign"
+  ],
+  "env": {
+    "test": {
+      "sourceMaps": "both"
+    },
+    "release": {
+      "plugins": [
+        "transform-runtime",
+        ["transform-react-remove-prop-types", {"mode": "wrap"}]
+      ]
+    }
+  }
+}

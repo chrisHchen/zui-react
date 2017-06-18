@@ -1,0 +1,14 @@
+@import '../theme/variables.css';
+
+.test-wrap{
+  color: var(--color-outer);
+
+  & .test-inner{
+    color: var(--color-inner);
+
+    &:hover{
+      color: var(--color-outer);
+      font-size: 30px;
+    }
+  }
+}
