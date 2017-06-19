@@ -1,4 +1,12 @@
 :root{
+  --color-primary: #12c287;
+  --color-primary-hover: color(var(--color-primary) shade(20%));
   --color-outer: red;
   --color-inner: green;
+}
+
+body{
+  font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
 }

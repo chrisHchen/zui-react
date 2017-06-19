@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const entries = require('../script/find-entry')();
 
 const plugins = [
   new webpack.HotModuleReplacementPlugin(),
@@ -12,9 +13,7 @@ const postcssPlugins = [
 ];
 
 module.exports = {
-  entry: {
-    'zui-react': './src/test/app.js',
-  },
+  entry: entries,
   resolve: {
     extensions: ['.js', '.json'],
   },

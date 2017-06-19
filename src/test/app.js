@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Test from './Test';
+import Button from '../Button/Button';
 
 ReactDOM.render(
-  <Test />, document.getElementById( 'app' )
+  <Button />, document.getElementById( 'app' )
 );

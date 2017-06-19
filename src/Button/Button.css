@@ -1,0 +1,9 @@
+@import '../theme/variables.css';
+
+.button-wrap{
+  background-color: var(--color-primary);
+
+  &:hover{
+    background-color: var(--color-primary-hover);
+  }
+}

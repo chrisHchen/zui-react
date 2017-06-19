@@ -1,10 +1,13 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const entries = require('../script/find-entry')();
 
 const plugins = [
-  new CleanWebpackPlugin('build'),
-  new ExtractTextPlugin('theme/zui-react.css'),
+  new CleanWebpackPlugin(path.join('build'), {
+    root: path.join(__dirname, '../'),
+  }),
+  new ExtractTextPlugin('[name]/[name].css'),
 ];
 const postcssPlugins = [
   require('postcss-import')(),
@@ -13,9 +16,7 @@ const postcssPlugins = [
 ];
 
 module.exports = {
-  entry: {
-    'zui-react': './src/test/app.js',
-  },
+  entry: entries,
   externals: [
     'react',
     'react-dom',
@@ -26,7 +27,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../build'),
-    filename: '[name].js',
+    filename: '[name]/[name].js',
   },
   plugins: plugins,
   stats: {
