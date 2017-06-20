@@ -3,15 +3,16 @@
 .zui-button{
   @apply --transition--all;
   background-color: var(--color-primary);
-  padding: 10px 15px;
-  line-height: 1;
+  line-height: 36px;
+  height: 36px;
+  padding: 0px;
   position: relative;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   box-sizing: border-box;
   display: inline-block;
   cursor: pointer;
   border-radius: var(--border-radius-primary);
-  border: 1px solid var(--color-primary);
+  border: 10px;
   text-decoration: none;
   text-align: center;
   -webkit-appearance: none;
@@ -21,6 +22,8 @@
   white-space: nowrap;
   color: var(--color-base-white);
   font-family: inherit;
+  font-size: var(--fontsize-normal);
+  z-index: 1;
 
   & .zui-button_inner{
     position: relative;
@@ -28,7 +31,7 @@
     letter-spacing: 0px;
     text-transform: uppercase;
     font-weight: 500;
-    font-size: var(--fontsize-normal);
+    padding: 0 16px;
   }
 
   &.is-disabled{
@@ -36,7 +39,6 @@
     cursor: not-allowed;
     background-image: none;
     background-color: color(var(--color-base-grey) tint(20%));
-    border-color: color(var(--color-base-grey) shade(18%));
   }
 
   &+.zui-button{
@@ -46,56 +48,51 @@
 
 .zui-button_primary{
   background-color: var(--color-primary);
-  border: 1px solid var(--color-primary);
 
   &:hover{
-    background-color: color(var(--color-primary) tint(15%));
-    border: 1px solid color(var(--color-primary) tint(15%));
+    background-color: color(var(--color-primary) tint(18%));
+
+    /*border: 1px solid color(var(--color-primary) tint(18%));*/
   }
 }
 
 .zui-button_info{
   background-color: var(--color-info);
-  border: 1px solid var(--color-info);
 
   &:hover{
-    background-color: color(var(--color-info) tint(15%));
-    border: 1px solid color(var(--color-info) tint(15%));
+    background-color: color(var(--color-info) tint(18%));
   }
 }
 
 .zui-button_success{
   background-color: var(--color-success);
-  border: 1px solid var(--color-success);
 
   &:hover{
-    background-color: color(var(--color-success) tint(15%));
-    border: 1px solid color(var(--color-success) tint(15%));
+    background-color: color(var(--color-success) tint(18%));
   }
 }
 
 .zui-button_warning{
   background-color: var(--color-warning);
-  border: 1px solid var(--color-warning);
 
   &:hover{
-    background-color: color(var(--color-warning) tint(15%));
-    border: 1px solid color(var(--color-warning) tint(15%));
+    background-color: color(var(--color-warning) tint(18%));
   }
 }
 
 .zui-button_danger{
   background-color: var(--color-danger);
-  border: 1px solid var(--color-danger);
 
   &:hover{
-    background-color: color(var(--color-danger) tint(15%));
-    border: 1px solid color(var(--color-danger) tint(15%));
+    background-color: color(var(--color-danger) tint(18%));
   }
 }
 
 .zui-button_text{
   background-color: var(--color-base-white);
-  border: 1px solid var(--color-base-white);
   color: color(var(--color-base-black) a(87%));
+
+  &:hover{
+    background-color: color(var(--color-base-grey) tint(15%));
+  }
 }

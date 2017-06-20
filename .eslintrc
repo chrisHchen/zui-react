@@ -13,12 +13,12 @@
       "experimentalObjectRestSpread": true,
     }
   },
-  "plugins":[
+  "parser": "babel-eslint",
+  "plugins": [
     "react",
     "import"
   ],
   "extends": 'eslint:recommended',
-  "parser": "babel-eslint",
   "rules": {
     'array-bracket-spacing': ['error', 'never'],
     'arrow-spacing': 'error',
@@ -118,6 +118,7 @@
 
     'strict': 'off',
     'no-case-declarations': 'off',
+    'no-console': off,
     'react/jsx-key': 'off',
     'react/jsx-no-bind': 'off',
     'react/jsx-no-literals': 'off',
