@@ -18,6 +18,7 @@
     "import"
   ],
   "extends": 'eslint:recommended',
+  "parser": "babel-eslint",
   "rules": {
     'array-bracket-spacing': ['error', 'never'],
     'arrow-spacing': 'error',

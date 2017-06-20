@@ -1,13 +1,13 @@
 @import '../theme/variables.css';
 
 .test-wrap{
-  color: var(--color-outer);
+  color: var(--color-primary);
 
   & .test-inner{
-    color: var(--color-inner);
+    color: var(--color-base-white);
 
     &:hover{
-      color: var(--color-outer);
+      color: var(--color-primary);
       font-size: 30px;
     }
   }

@@ -1,13 +1,16 @@
 import React from 'react';
-import './test.css';
-
-const a = 1;
-const b = ['a', 'b'];
+import Button from '../Button/Button';
 
 export default function Hello() {
   return (
-    <h1 className="test-wrap" title={a} name={b}>
-      <span className="test-inner">Hello World</span>
-    </h1>
+    <div>
+      <Button />
+      <Button type="info" />
+      <Button type="success" />
+      <Button type="warning" />
+      <Button type="danger" />
+      <Button type="text" />
+      <Button disabled={true} />
+    </div>
   );
 }
