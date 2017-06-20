@@ -39,52 +39,56 @@
     cursor: not-allowed;
     background-image: none;
     background-color: color(var(--color-base-grey) tint(20%));
+    line-height: 34px;
+    border: 1px solid color(var(--color-base-grey) shade(16%));
   }
 
   &+.zui-button{
     margin-left: 10px;
+  }
+
+  &.focused{
+    background-color: color(var(--color-base-grey) tint(15%));
   }
 }
 
 .zui-button_primary{
   background-color: var(--color-primary);
 
-  &:hover{
-    background-color: color(var(--color-primary) tint(18%));
-
-    /*border: 1px solid color(var(--color-primary) tint(18%));*/
+  &:hover,&.focused{
+    background-color: color(var(--color-primary) tint(22%));
   }
 }
 
 .zui-button_info{
   background-color: var(--color-info);
 
-  &:hover{
-    background-color: color(var(--color-info) tint(18%));
+  &:hover,&.focused{
+    background-color: color(var(--color-info) tint(22%));
   }
 }
 
 .zui-button_success{
   background-color: var(--color-success);
 
-  &:hover{
-    background-color: color(var(--color-success) tint(18%));
+  &:hover,&.focused{
+    background-color: color(var(--color-success) tint(22%));
   }
 }
 
 .zui-button_warning{
   background-color: var(--color-warning);
 
-  &:hover{
-    background-color: color(var(--color-warning) tint(18%));
+  &:hover,&.focused{
+    background-color: color(var(--color-warning) tint(22%));
   }
 }
 
 .zui-button_danger{
   background-color: var(--color-danger);
 
-  &:hover{
-    background-color: color(var(--color-danger) tint(18%));
+  &:hover,&.focused{
+    background-color: color(var(--color-danger) tint(22%));
   }
 }
 

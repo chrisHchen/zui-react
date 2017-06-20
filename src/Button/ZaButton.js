@@ -38,8 +38,12 @@ class ZaButton extends Component {
     onKeyDown: PropTypes.func,
     onKeyUp: PropTypes.func,
     onKeyboardFocus: PropTypes.func,
+    onMouseEnter: PropTypes.func,
+    onMouseLeave: PropTypes.func,
+    onTouchStart: PropTypes.func,
     onTouchTap: PropTypes.func,
     style: PropTypes.object,
+    tabIndex: PropTypes.number,
     touchRippleColor: PropTypes.string,
     type: PropTypes.oneOf([
       'primary',
@@ -64,11 +68,16 @@ class ZaButton extends Component {
     onKeyUp: () => {},
     onTouchTap: () => {},
     onKeyboardFocus: () => {},
+    onMouseEnter: () => {},
+    onMouseLeave: () => {},
+    onTouchStart: () => {},
+    tabIndex: 0,
     disableTouchRipple: true,
   }
 
   state = {
     isKeyboardFocused: false,
+    touch: false,
   }
 
   componentWillMount() {
@@ -80,6 +89,22 @@ class ZaButton extends Component {
 
   componentDidMount() {
     listenForTabPress();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.disabled &&
+      this.state.isKeyboardFocused) {
+      this.setState({isKeyboardFocused: false});
+      if (nextProps.onKeyboardFocus) {
+        nextProps.onKeyboardFocus(null, false);
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.focusTimeout) {
+      clearTimeout(this.focusTimeout);
+    }
   }
 
   handleClick = (event) => {
@@ -144,6 +169,19 @@ class ZaButton extends Component {
     }
   }
 
+  handleMouseLeave = (event) => {
+    this.props.onMouseLeave(event);
+  }
+
+  handleMouseEnter = (event) => {
+    this.props.onMouseEnter(event);
+  }
+
+  handleTouchStart = (event) => {
+    this.setState({touch: true});
+    this.props.onTouchStart(event);
+  }
+
   removeKeyboardFocus(event) {
     if (this.state.isKeyboardFocused) {
       this.setState({isKeyboardFocused: false});
@@ -196,13 +234,23 @@ class ZaButton extends Component {
       disableTouchRipple, // eslint-disable-line no-unused-vars
       centerRipple, // eslint-disable-line no-unused-vars
       children, // eslint-disable-line no-unused-vars
+      onFocus, // eslint-disable-line no-unused-vars
+      onBlur, // eslint-disable-line no-unused-vars
+      onClick, // eslint-disable-line no-unused-vars
+      onKeyUp, // eslint-disable-line no-unused-vars
+      onKeyDown, // eslint-disable-line no-unused-vars
+      onTouchTap, // eslint-disable-line no-unused-vars
       onKeyboardFocus, // eslint-disable-line no-unused-vars
       touchRippleColor, // eslint-disable-line no-unused-vars
+      tabIndex,
       ...other
     } = this.props;
 
+    const hovered = (this.state.isKeyboardFocused || this.state.touch) && !disabled;
+
     const typeClass = classNames({
       'zui-button': true,
+      'focused': hovered,
       'is-disabled': disabled,
       [`zui-button_${type}`]: !disabled,
       [className]: true,
@@ -216,6 +264,10 @@ class ZaButton extends Component {
       onKeyUp: this.handleKeyUp,
       onKeyDown: this.handleKeyDown,
       onTouchTap: this.handleTouchTap,
+      onMouseLeave: this.handleMouseLeave,
+      onMouseEnter: this.handleMouseEnter,
+      onTouchStart: this.handleTouchStart,
+      tabIndex: disabled ? -1 : tabIndex,
       ...other,
     };
     const buttonChildren = this.createButtonChildren();
