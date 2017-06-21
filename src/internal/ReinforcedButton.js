@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Events from '../util/event';
 import keycode from 'keycode';
-import './ZaButton.css';
-import classNames from 'classnames';
 import TouchRipple from '../internal/TouchRipple';
 
 let tabPressed = false;
@@ -18,11 +16,11 @@ function listenForTabPress() {
   }
 }
 
-class ZaButton extends Component {
+class ReinforcedButton extends Component {
   static propTypes = {
     centerRipple: PropTypes.bool,
     children: PropTypes.node,
-    className: PropTypes.string,
+    className: PropTypes.string.isRequired,
     containerElement: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.element,
@@ -31,53 +29,41 @@ class ZaButton extends Component {
     disabled: PropTypes.bool,
     href: PropTypes.string,
     keyboardFocused: PropTypes.bool,
-    label: PropTypes.string,
+    nativeType: PropTypes.oneOf([
+      'button',
+      'submit',
+      'reset',
+    ]),
     onBlur: PropTypes.func,
     onClick: PropTypes.func,
     onFocus: PropTypes.func,
     onKeyDown: PropTypes.func,
     onKeyUp: PropTypes.func,
     onKeyboardFocus: PropTypes.func,
-    onMouseEnter: PropTypes.func,
-    onMouseLeave: PropTypes.func,
-    onTouchStart: PropTypes.func,
     onTouchTap: PropTypes.func,
     style: PropTypes.object,
     tabIndex: PropTypes.number,
     touchRippleColor: PropTypes.string,
-    type: PropTypes.oneOf([
-      'primary',
-      'success',
-      'warning',
-      'danger',
-      'info',
-      'text',
-    ]),
   };
 
   static defaultProps = {
-    type: 'primary',
     disabled: false,
     style: {},
     containerElement: 'button',
-    className: '',
+    nativeType: 'button',
     onBlur: () => {},
     onClick: () => {},
     onFocus: () => {},
     onKeyDown: () => {},
     onKeyUp: () => {},
-    onTouchTap: () => {},
     onKeyboardFocus: () => {},
-    onMouseEnter: () => {},
-    onMouseLeave: () => {},
-    onTouchStart: () => {},
+    onTouchTap: () => {},
     tabIndex: 0,
     disableTouchRipple: true,
   }
 
   state = {
     isKeyboardFocused: false,
-    touch: false,
   }
 
   componentWillMount() {
@@ -89,6 +75,10 @@ class ZaButton extends Component {
 
   componentDidMount() {
     listenForTabPress();
+    if (this.state.isKeyboardFocused) {
+      this.button.focus();
+      this.props.onKeyboardFocus(null, true);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -107,24 +97,10 @@ class ZaButton extends Component {
     }
   }
 
-  handleClick = (event) => {
-    if (!this.props.disabled) {
-      tabPressed = false;
-      this.props.onClick(event);
-    }
-  }
-
   handleBlur = (event) => {
     this.cancelFocusTimeout();
     this.removeKeyboardFocus(event, false);
     this.props.onBlur(event);
-  }
-
-  cancelFocusTimeout() {
-    if (this.focusTimeout) {
-      clearTimeout(this.focusTimeout);
-      this.focusTimeout = null;
-    }
   }
 
   handleFocus = (event) => {
@@ -169,17 +145,11 @@ class ZaButton extends Component {
     }
   }
 
-  handleMouseLeave = (event) => {
-    this.props.onMouseLeave(event);
-  }
-
-  handleMouseEnter = (event) => {
-    this.props.onMouseEnter(event);
-  }
-
-  handleTouchStart = (event) => {
-    this.setState({touch: true});
-    this.props.onTouchStart(event);
+  handleClick = (event) => {
+    if (!this.props.disabled) {
+      tabPressed = false;
+      this.props.onClick(event);
+    }
   }
 
   removeKeyboardFocus(event) {
@@ -196,83 +166,86 @@ class ZaButton extends Component {
     }
   }
 
+  cancelFocusTimeout() {
+    if (this.focusTimeout) {
+      clearTimeout(this.focusTimeout);
+      this.focusTimeout = null;
+    }
+  }
+
   createButtonChildren() {
     const {
       centerRipple,
       children,
       disabled,
-      label,
       disableTouchRipple,
       touchRippleColor,
     } = this.props;
 
-    const buttonChildren = label ? (<span key="label" className="zui-button_inner">{label}</span>) : children;
     const touchRipple = !disabled && !disableTouchRipple ? (
       <TouchRipple
         centerRipple={centerRipple}
         color={touchRippleColor}
         key="touchRipple"
       >
-        {buttonChildren}
+        {children}
       </TouchRipple>
     ) : undefined;
 
     return [
       touchRipple,
-      touchRipple ? undefined : buttonChildren,
+      touchRipple ? undefined : children,
     ];
   }
 
   render() {
     const {
-      type,
       disabled,
       className,
-      label, // eslint-disable-line no-unused-vars
       href,
       containerElement,
       disableTouchRipple, // eslint-disable-line no-unused-vars
       centerRipple, // eslint-disable-line no-unused-vars
       children, // eslint-disable-line no-unused-vars
-      onFocus, // eslint-disable-line no-unused-vars
       onBlur, // eslint-disable-line no-unused-vars
       onClick, // eslint-disable-line no-unused-vars
+      onFocus, // eslint-disable-line no-unused-vars
       onKeyUp, // eslint-disable-line no-unused-vars
       onKeyDown, // eslint-disable-line no-unused-vars
       onTouchTap, // eslint-disable-line no-unused-vars
       onKeyboardFocus, // eslint-disable-line no-unused-vars
       touchRippleColor, // eslint-disable-line no-unused-vars
       tabIndex,
+      nativeType,
       ...other
     } = this.props;
 
-    const hovered = (this.state.isKeyboardFocused || this.state.touch) && !disabled;
-
-    const typeClass = classNames({
-      'zui-button': true,
-      'focused': hovered,
-      'is-disabled': disabled,
-      [`zui-button_${type}`]: !disabled,
-      [className]: true,
-    });
     const buttonProps = {
-      className: typeClass,
+      className,
       href,
+      ref: (node) => this.button = node,
       onBlur: this.handleBlur,
       onClick: this.handleClick,
       onFocus: this.handleFocus,
       onKeyUp: this.handleKeyUp,
       onKeyDown: this.handleKeyDown,
       onTouchTap: this.handleTouchTap,
-      onMouseLeave: this.handleMouseLeave,
-      onMouseEnter: this.handleMouseEnter,
-      onTouchStart: this.handleTouchStart,
       tabIndex: disabled ? -1 : tabIndex,
       ...other,
     };
+
     const buttonChildren = this.createButtonChildren();
+
+    if (React.isValidElement(containerElement)) {
+      return React.cloneElement(containerElement, buttonProps, buttonChildren);
+    }
+
+    if (!href && containerElement === 'button') {
+      buttonProps.type = nativeType;
+    }
+
     return React.createElement(href ? 'a' : containerElement, buttonProps, buttonChildren);
   }
 }
 
-export default ZaButton;
+export default ReinforcedButton;

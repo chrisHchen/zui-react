@@ -9,6 +9,7 @@
   --color-warning: #f7ba2a;
   --color-danger: #ff4949;
   --color-info: #50bfff;
+  --color-base-text: color(var(--color-base-black) a(87%));
 
   /*fontsize*/
   --fontsize-small: 12px;

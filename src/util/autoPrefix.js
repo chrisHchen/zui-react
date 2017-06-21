@@ -24,9 +24,10 @@ const prefix = function() {
 
 export default {
   set(style, key, value) {
+    style[key] = value;
     if (prefix) {
       key = prefix + key[0].toUpperCase() + key.slice(1);
+      style[key] = value;
     }
-    style[key] = value;
   },
 };

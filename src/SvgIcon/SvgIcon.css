@@ -1,0 +1,11 @@
+@import '../theme/variables.css';
+
+.zui-svgicon{
+  @apply --transition--all;
+  display: inline-block;
+  color: var(--color-base-text);
+  fill: var(--color-base-text);
+  height: 24px;
+  width: 24px;
+  user-select: none;
+}

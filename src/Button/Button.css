@@ -94,7 +94,7 @@
 
 .zui-button_text{
   background-color: var(--color-base-white);
-  color: color(var(--color-base-black) a(87%));
+  color: var(--color-base-text);
 
   &:hover{
     background-color: color(var(--color-base-grey) tint(15%));
