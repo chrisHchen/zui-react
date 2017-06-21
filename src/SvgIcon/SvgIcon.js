@@ -58,9 +58,9 @@ class SvgIcon extends Component {
     const colorOff = color ? color : 'currentColor';
     const colorOn = hoverColor ? hoverColor : colorOff;
 
-    const mergedStyle = Object.assign({
+    const mergedStyle = Object.assign({}, style, {
       fill: this.state.hovered ? colorOn : colorOff,
-    }, style);
+    });
 
     return (
       <svg

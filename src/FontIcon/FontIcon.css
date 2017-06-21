@@ -1,0 +1,10 @@
+@import '../theme/variables.css';
+
+.zui-fonticon{
+  @apply --transition--all;
+  display: inline-block;
+  color: var(--color-base-text);
+  font-size: 24px;
+  position: relative;
+  user-select: none;
+}
