@@ -70,8 +70,9 @@ class ModalLayer extends Component {
       if (!this.layer) {
         this.layer = document.createElement('div');
         document.body.appendChild(this.layer);
-        this.layer.className = 'zui-modalLayer';
         if (this.props.useLayerForClickAway) {
+          // only add class when useLayerForClickAway is true
+          this.layer.className = 'zui-modalLayer';
           this.layer.addEventListener('touchstart', this.onClickAway);
           this.layer.addEventListener('click', this.onClickAway);
         } else {

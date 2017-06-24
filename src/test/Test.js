@@ -11,6 +11,7 @@ injectTapEventPlugin();
 class Hello extends Component {
   state = {
     open: false,
+    open2: false,
   }
   handleTouchTap = () => {
     console.log('touchTap');  // eslint-disable-line
@@ -27,6 +28,19 @@ class Hello extends Component {
   handleOpenPopover = () => {
     this.setState({
       open: true,
+    });
+  }
+  handleMouseEnter = () => {
+    this.setState({
+      open2: true,
+    });
+  }
+  handleRequestClose2 = (reason) => {
+    console.log(reason);
+  }
+  handleMouseLeave = () => {
+    this.setState({
+      open2: false,
     });
   }
   render() {
@@ -106,7 +120,25 @@ class Hello extends Component {
             targetOrigin={{horizontal: 'left', vertical: 'top'}}
             onRequestClose={this.handleRequestClose}
           >
-            <div style={{height: '200px', lineHeight: '200px', backgroundColor: 'purple'}}>this is a popover</div>
+            <div style={{height: '200px', lineHeight: '200px'}}>this is a popover</div>
+          </Popover>
+          <Button
+            type="text"
+            label="hover me"
+            disableTouchRipple={false}
+            ref={(el) => this.anchor2 = ReactDOM.findDOMNode(el)}
+            onMouseEnter={this.handleMouseEnter}
+            onMouseLeave={this.handleMouseLeave}
+          />
+          <Popover
+            open={this.state.open2}
+            anchorEl={this.anchor2}
+            anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+            targetOrigin={{horizontal: 'left', vertical: 'top'}}
+            onRequestClose={this.handleRequestClose2}
+            useLayerForClickAway={false}
+          >
+            <div style={{height: '200px', lineHeight: '200px'}}>this is a popover</div>
           </Popover>
         </div>
       </div>
