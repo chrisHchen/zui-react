@@ -1,0 +1,42 @@
+@import '../theme/variables.css';
+
+.zui-popover-default-ani-root{
+  position: fixed;
+  z-index: 1;
+  opacity: 0;
+  transform: scale(1, 1);
+  transform-origin: left top;
+  transition: transform 250ms var(--ease-out), opacity  250ms var(--ease-out);
+  max-height: 100%;
+
+  &.open{
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+
+.zui-popover-default-ani-horizontal{
+  max-height: 100%;
+  overflow-y: auto;
+  transform: scaleX(0);
+  opacity: 0;
+  transform-origin: left top;
+  transition: transform 250ms var(--ease-out), opacity  250ms var(--ease-out);
+
+  @nest .open &{
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.zui-popover-default-ani-vertical{
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: left top;
+  transition: transform 500ms var(--ease-out), opacity  500ms var(--ease-out);
+
+  @nest .open &{
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}

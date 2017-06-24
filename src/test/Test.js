@@ -1,21 +1,37 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import Button from '../Button';
 import SvgIcon from '../SvgIcon';
 import FontIcon from '../FontIcon';
+import Popover from '../Popover';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
 
 class Hello extends Component {
+  state = {
+    open: false,
+  }
   handleTouchTap = () => {
     console.log('touchTap');  // eslint-disable-line
   }
   handleClick = () => {
     console.log('click');  // eslint-disable-line
   }
+  handleRequestClose = (reason) => {
+    console.log(reason);
+    this.setState({
+      open: false,
+    });
+  }
+  handleOpenPopover = () => {
+    this.setState({
+      open: true,
+    });
+  }
   render() {
     return (
-      <div>
+      <div style={{height: '2000px'}}>
         <Button label="确定按钮" />
         <Button
           type="info" label="确定按钮"
@@ -74,6 +90,24 @@ class Hello extends Component {
             hoverColor="green"
             style={{marginRight: '15px'}}
           />
+        </div>
+        <div style={{marginTop: '500px'}}>
+          <Button
+            type="text"
+            label="click me"
+            disableTouchRipple={false}
+            ref={(el) => this.anchor = ReactDOM.findDOMNode(el)}
+            onTouchTap={this.handleOpenPopover}
+          />
+          <Popover
+            open={this.state.open}
+            anchorEl={this.anchor}
+            anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+            targetOrigin={{horizontal: 'left', vertical: 'top'}}
+            onRequestClose={this.handleRequestClose}
+          >
+            <div style={{height: '200px', lineHeight: '200px', backgroundColor: 'purple'}}>this is a popover</div>
+          </Popover>
         </div>
       </div>
     );

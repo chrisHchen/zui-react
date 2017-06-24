@@ -2,7 +2,7 @@ import {Component} from 'react';
 import PropTypes from 'prop-types';
 import {unstable_renderSubtreeIntoContainer, unmountComponentAtNode} from 'react-dom';
 import './ModalLayer.css';
-import Dom from '../utils/dom';
+import Dom from '../util/dom';
 
 class ModalLayer extends Component {
   static propTypes = {
@@ -40,7 +40,11 @@ class ModalLayer extends Component {
       (document.documentElement.contains(event.target) && !Dom.isDescendant(el, event.target))) {
       this.props.componentClickAway(event);
     }
-  };
+  }
+
+  getLayer() {
+    return this.layer;
+  }
 
   unrenderLayer() {
     if (!this.layer) {
@@ -76,10 +80,10 @@ class ModalLayer extends Component {
             window.addEventListener('click', this.onClickAway);
           }, 0);
         }
-
-        const layerElement = render();
-        this.layerElement = unstable_renderSubtreeIntoContainer(this, layerElement, this.layer);
       }
+
+      const layerElement = render();
+      this.layerElement = unstable_renderSubtreeIntoContainer(this, layerElement, this.layer);
     } else {
       this.unrenderLayer();
     }
