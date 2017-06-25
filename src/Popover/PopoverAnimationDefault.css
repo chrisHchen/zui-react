@@ -1,7 +1,7 @@
 @import '../theme/variables.css';
 
 .zui-popover-default-ani-root{
-  @apply --popover-box-shadow;
+  @apply --depth-shade-1;
   position: fixed;
   z-index: 1;
   opacity: 0;

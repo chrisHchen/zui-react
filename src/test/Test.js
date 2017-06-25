@@ -5,8 +5,16 @@ import SvgIcon from '../SvgIcon';
 import FontIcon from '../FontIcon';
 import Popover from '../Popover';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import Shade from '../Shade';
 
 injectTapEventPlugin();
+
+const shadeStyle = {
+  width: '100px',
+  height: '100px',
+  margin: '10px',
+  display: 'inline-block',
+};
 
 class Hello extends Component {
   state = {
@@ -104,6 +112,10 @@ class Hello extends Component {
             hoverColor="green"
             style={{marginRight: '15px'}}
           />
+        </div>
+        <div>
+          <Shade style={shadeStyle} />
+          <Shade style={shadeStyle} zDepth={2} circle={true} />
         </div>
         <div style={{marginTop: '500px'}}>
           <Button
