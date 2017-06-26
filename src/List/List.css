@@ -1,0 +1,19 @@
+@import '../theme/variables.css';
+
+.zui-list{
+  padding: 8px 0;
+
+  &.subheadered{
+    padding: 0 0 8px 0;
+  }
+
+  & .zui-list-subheader{
+    box-sizing: border-box;
+    color: var(--color-base-sub);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 48px;
+    padding-left: 16px;
+    width: 100%;
+  }
+}

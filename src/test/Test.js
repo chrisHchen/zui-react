@@ -6,6 +6,7 @@ import FontIcon from '../FontIcon';
 import Popover from '../Popover';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Shade from '../Shade';
+import List, {ListItem} from '../List';
 
 injectTapEventPlugin();
 
@@ -116,6 +117,39 @@ class Hello extends Component {
         <div>
           <Shade style={shadeStyle} />
           <Shade style={shadeStyle} zDepth={2} circle={true} />
+        </div>
+        <div
+          style={{
+            border: '1px solid #eee',
+            width: '250px',
+          }}
+        >
+          <List subheaderText="Try Harder">
+            <ListItem
+              nestedItems={[
+                <ListItem
+                  key={1}
+                  primaryText="Starred"
+                />,
+                <ListItem
+                  key={2}
+                  primaryText="Sent Mail"
+                  disabled={true}
+                  nestedItems={[
+                    <ListItem key={1} primaryText="Drafts" />,
+                  ]}
+                />,
+                <ListItem
+                  key={3}
+                  primaryText="Inbox"
+                  nestedItems={[
+                    <ListItem key={1} primaryText="Drafts" />,
+                  ]}
+                />,
+              ]}
+            >a</ListItem>
+            <ListItem disableTouchRipple={false}>b</ListItem>
+          </List>
         </div>
         <div style={{marginTop: '500px'}}>
           <Button
