@@ -138,7 +138,7 @@ class Hello extends Component {
                   nestedItems={[
                     <ListItem key={1} primaryText="Drafts" />,
                   ]}
-                />,
+                ><span>Sent Mail</span></ListItem>,
                 <ListItem
                   key={3}
                   primaryText="Inbox"
@@ -147,8 +147,8 @@ class Hello extends Component {
                   ]}
                 />,
               ]}
-            >a</ListItem>
-            <ListItem disableTouchRipple={false}>b</ListItem>
+            >Test a</ListItem>
+            <ListItem disableTouchRipple={false}>Test b</ListItem>
           </List>
         </div>
         <div style={{marginTop: '500px'}}>

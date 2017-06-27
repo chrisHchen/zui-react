@@ -15,20 +15,27 @@
   padding: 0px;
   z-index: 1;
 
+  &.disabled{
+    cursor: not-allowed;
+    padding: 16px;
+
+    &:hover{
+      background: none;
+    }
+  }
+
   &:hover{
     background-color: var(--color-base-light);
   }
 
   & .zui-listItem-inner{
+    line-height: 1;
     padding: 16px;
-  }
 
-  &.disabled{
-    cursor: not-allowed;
-    padding: 16px;
-  }
-
-  &.disabled:hover{
-    background: none;
+    & .zui-listItem-arraw{
+      position: absolute;
+      right: 16px;
+      top: 14px;
+    }
   }
 }

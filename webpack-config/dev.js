@@ -6,11 +6,15 @@ const plugins = [
   new webpack.HotModuleReplacementPlugin(),
 ];
 
-const postcssPlugins = [
-  require('postcss-import')(),
-  require('stylelint')(),
-  require('postcss-cssnext')(),
-];
+const postcssPlugins = function() {
+  return [
+    require('stylelint')(),
+    require('postcss-import')(),
+    require('postcss-cssnext')(),
+    require('precss')(),
+    require('postcss-reporter')(),
+  ];
+};
 
 module.exports = {
   entry: entries,
@@ -51,7 +55,6 @@ module.exports = {
         {
           loader: 'postcss-loader',
           options: {
-            sourceMap: true,
             plugins: postcssPlugins,
           },
         },

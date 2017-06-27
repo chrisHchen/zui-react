@@ -4,6 +4,8 @@ import shallowEqual from 'recompose/shallowEqual';
 import NestedList from './NestedList';
 import ReinforcedButton from '../internal/ReinforcedButton';
 import classNames from 'classnames';
+import OpenIcon from '../svg-embedded/expand-less';
+import CloseIcon from '../svg-embedded/expand-more';
 import './ListItem.css';
 
 const nestedLevelDepth = 18;
@@ -175,12 +177,12 @@ class ListItem extends Component {
       ...other
     } = this.props;
     const hasNestListItems = nestedItems.length;
-    const contentChildren = [children];
+    const contentChildren = [primaryText || children];
 
     if (hasNestListItems) {
       const rightIconButtonElement = this.state.open ?
-        <div>open</div> :
-        <div>close</div>;
+        <OpenIcon className="zui-listItem-arraw" /> :
+        <CloseIcon className="zui-listItem-arraw" />;
 
       this.pushElement(
         contentChildren,
@@ -221,7 +223,7 @@ class ListItem extends Component {
               style={style}
             >
               <div style={mergedInnerDivStyle} className="zui-listItem-inner">
-                {primaryText || contentChildren}
+                {contentChildren}
               </div>
             </ReinforcedButton>
           )

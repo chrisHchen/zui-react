@@ -6,6 +6,7 @@ import classNames from 'classnames';
 class SvgIcon extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     color: PropTypes.string,
     hoverColor: PropTypes.string,
     onMouseEnter: PropTypes.func,
@@ -47,12 +48,14 @@ class SvgIcon extends Component {
       onMouseEnter, // eslint-disable-line no-unused-vars
       onMouseLeave, // eslint-disable-line no-unused-vars
       style,
+      className,
       ...other
     } = this.props;
 
 
     const svgIconClassName = classNames({
       'zui-svgicon': true,
+      [className]: !!className,
     });
 
     const colorOff = color ? color : 'currentColor';
