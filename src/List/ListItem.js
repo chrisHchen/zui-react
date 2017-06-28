@@ -92,7 +92,9 @@ class ListItem extends Component {
 
   handleNestedListToggle = (event) => {
     event.stopPropagation();
-
+    if (this.props.onTouchTap) {
+      this.props.onTouchTap();
+    }
     if (this.props.open === null) {
       this.setState({open: !this.state.open}, () => {
         this.props.onNestedListToggle(this);

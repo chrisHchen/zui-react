@@ -38,4 +38,8 @@
       top: 14px;
     }
   }
+
+  &.selected{
+    background-color: var(--color-base-sublime);
+  }
 }

@@ -12,6 +12,7 @@
   --color-base-text: color(var(--color-base-black) a(87%));
   --color-base-sub: color(var(--color-base-black) a(54%));
   --color-base-light: color(var(--color-base-black) a(10%));
+  --color-base-sublime: color(var(--color-base-black) a(20%));
 
   /*fontsize*/
   --fontsize-small: 12px;

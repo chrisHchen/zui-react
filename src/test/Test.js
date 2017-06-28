@@ -6,7 +6,7 @@ import FontIcon from '../FontIcon';
 import Popover from '../Popover';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Shade from '../Shade';
-import List, {ListItem} from '../List';
+import List, {ListItem, SelectableList} from '../List';
 
 injectTapEventPlugin();
 
@@ -150,6 +150,44 @@ class Hello extends Component {
             >Test a</ListItem>
             <ListItem disableTouchRipple={false}>Test b</ListItem>
           </List>
+        </div>
+        <div style={{margin: '15px 0'}}>selectable list</div>
+        <div
+          style={{
+            border: '1px solid #eee',
+            width: '250px',
+          }}
+        >
+          <SelectableList defaultValue={5} subheaderText="Try Harder" onChange={(event, value) => console.log(value)}>
+            <ListItem
+              value={0}
+              nestedItems={[
+                <ListItem
+                  value={1}
+                  key={1}
+                  primaryText="Starred"
+                />,
+                <ListItem
+                  value={2}
+                  key={2}
+                  primaryText="Sent Mail"
+                  disabled={true}
+                  nestedItems={[
+                    <ListItem value={3} key={1} primaryText="Drafts" />,
+                  ]}
+                ><span>Sent Mail Inner</span></ListItem>,
+                <ListItem
+                  value={4}
+                  key={3}
+                  primaryText="Inbox"
+                  nestedItems={[
+                    <ListItem value={5} key={1} primaryText="Drafts" />,
+                  ]}
+                />,
+              ]}
+            >Test a</ListItem>
+            <ListItem value={6} disableTouchRipple={false}>Test b</ListItem>
+          </SelectableList>
         </div>
         <div style={{marginTop: '500px'}}>
           <Button
