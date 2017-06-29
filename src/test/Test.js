@@ -7,6 +7,7 @@ import Popover from '../Popover';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Shade from '../Shade';
 import List, {ListItem, SelectableList} from '../List';
+import Dropdown from '../Dropdown';
 
 injectTapEventPlugin();
 
@@ -188,6 +189,32 @@ class Hello extends Component {
             >Test a</ListItem>
             <ListItem value={6} disableTouchRipple={false}>Test b</ListItem>
           </SelectableList>
+        </div>
+        <div style={{marginTop: '20px'}}>drop down</div>
+        <div style={{marginLeft: '200px'}}>
+          <Dropdown
+            anchorEl={
+              <Button
+                type="text"
+                label="下拉菜单"
+              />
+            }
+            align="middle"
+            trigger="click"
+          >
+            <div style={{height: '200px', lineHeight: '200px'}} onClick={() => console.log(1)}>this is a dropdown</div>
+          </Dropdown>
+          <Dropdown
+            anchorEl={
+              <Button
+                type="text"
+                label="下拉菜单"
+              />
+            }
+            align="middle"
+          >
+            <div style={{height: '200px', lineHeight: '200px'}} onClick={() => console.log(1)}>this is a dropdown</div>
+          </Dropdown>
         </div>
         <div style={{marginTop: '500px'}}>
           <Button

@@ -23,6 +23,7 @@ class Shade extends Component {
       circle,
       style,
       zDepth,
+      ...other
     } = this.props;
     const mergedClass = classNames({
       'zui-shade': true,
@@ -33,6 +34,7 @@ class Shade extends Component {
       <div
         style={style}
         className={mergedClass}
+        {...other}
       >
         {children}
       </div>

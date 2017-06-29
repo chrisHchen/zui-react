@@ -165,8 +165,8 @@ class Popover extends Component {
       <Animation
         targetOrigin={targetOrigin}
         style={styleRoot}
-        {...other}
         open={this.state.open && !this.state.closing}
+        {...other}
       >
         {children}
       </Animation>

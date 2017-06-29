@@ -2,15 +2,16 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import propTypes from '../util/propTypes';
-import './PopoverAnimationDefault.css';
+import Shade from '../Shade';
+import './PopoverAnimationVertical.css';
 
-class PopoverAnimationDefault extends Component {
+class PopoverAnimationVertical extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     open: PropTypes.bool.isRequired,
     style: PropTypes.object,
-    targetOrigin: propTypes.origin.isRequired,
+    targetOrigin: propTypes.origin,
   };
 
   static defaultProps = {
@@ -36,31 +37,28 @@ class PopoverAnimationDefault extends Component {
     const {
       className,
       style,
-      targetOrigin, // eslint-disable-line no-unused-vars
       children,
+      targetOrigin, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
-    // TODO other animation
+
     const mergedClassNamesRoot = classNames({
       [className]: !!className,
-      'zui-popover-default-ani-root': true,
+      'zui-popover-vertical-ani-root': true,
       'open': !!this.state.open,
     });
 
     return (
-      <div
+      <Shade
         style={style}
         className={mergedClassNamesRoot}
+        zDepth={1}
         {...other}
       >
-        <div className="zui-popover-default-ani-horizontal">
-          <div className="zui-popover-default-ani-vertical">
-            {children}
-          </div>
-        </div>
-      </div>
+        {children}
+      </Shade>
     );
   }
 }
 
-export default PopoverAnimationDefault;
+export default PopoverAnimationVertical;
