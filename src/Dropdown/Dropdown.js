@@ -170,6 +170,7 @@ class Dropdown extends Component {
       children,
       targetAlign,
       useLayerForClickAway,
+      trigger,
     } = this.props;
 
     const popover = (
@@ -181,13 +182,13 @@ class Dropdown extends Component {
         targetOrigin={{horizontal: anchorAlign, vertical: 'top'}}
         onRequestClose={this.handleRequestClose}
         useLayerForClickAway={useLayerForClickAway}
+        trigger={trigger}
         key="popover"
       >
         {this.createWrappedChildren(children)}
       </Popover>
     );
     anchorChildren = Children.toArray(anchorChildren);
-    // anchorChildren.push(popover);
     anchorChildren.push(popover);
     return anchorChildren;
   }

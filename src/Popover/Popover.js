@@ -7,6 +7,7 @@ import propTypes from '../util/propTypes';
 import throttle from 'lodash.throttle';
 import PopoverAnimationDefault from './PopoverAnimationDefault';
 import {isIOS, getOffsetTop} from '../util/iOSHelpers';
+import Dom from '../util/dom';
 
 const styles = {
   root: {
@@ -34,6 +35,7 @@ class Popover extends Component {
     open: PropTypes.bool,
     style: PropTypes.object,
     targetOrigin: propTypes.origin,
+    trigger: PropTypes.string,
     useLayerForClickAway: PropTypes.bool,
   };
 
@@ -136,6 +138,7 @@ class Popover extends Component {
       style,
       targetOrigin,
       useLayerForClickAway, // eslint-disable-line no-unused-vars
+      trigger, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
@@ -171,7 +174,7 @@ class Popover extends Component {
     );
   };
 
-  requestClose(reason) {
+  requestClose(reason ) {
     this.gracefullyClose();
     if (this.props.onRequestClose) {
       this.props.onRequestClose(reason);
@@ -180,7 +183,11 @@ class Popover extends Component {
 
   componentClickAway = (event) => {
     event.preventDefault();
-    this.requestClose('clickAway');
+    if (this.props.trigger !== 'hover' &&
+        Dom.isDescendant(this.props.anchorEl, event.target) &&
+        this.props.anchorEl !== event.target) {
+      this.requestClose('clickAway');
+    }
   };
 
   getAnchorPosition(el) {
