@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, isValidElement, cloneElement, Children} from 'react';
 import PropTypes from 'prop-types';
 import Popover from '../Popover';
 import ReactDOM from 'react-dom';
@@ -48,7 +48,7 @@ class Dropdown extends Component {
     if (this.el) {
       if (trigger === 'hover') {
         Event.on(this.el, 'mouseenter', this.handleMouseEnter);
-        Event.on(this.el, 'mouseleave', this.timeoutLeave);
+        Event.on(this.el, 'mouseleave', this.handleMouseLeave);
       } else {
         Event.on(this.el, 'click', this.handleClick);
       }
@@ -58,21 +58,36 @@ class Dropdown extends Component {
   componentWillUnmount() {
     if (this.props.trigger === 'hover') {
       Event.off(this.el, 'mouseEnter', this.handleMouseEnter);
-      Event.off(this.el, 'mouseLeave', this.timeoutLeave);
+      Event.off(this.el, 'mouseLeave', this.handleMouseLeave);
     } else {
       Event.off(this.el, 'click', this.handleClick);
     }
+    if (this.timeoutAnchor) {
+      clearTimeout(this.timeoutAnchor);
+    }
+    if (this.timeoutTarget) {
+      clearTimeout(this.timeoutTarget);
+    }
   }
   handleMouseEnter = () => {
+    this.onAnchorEl = true;
+    if (this.timeoutTarget) {
+      clearTimeout(this.timeoutTarget);
+    }
     this.setState({
       open: true,
     });
   }
 
   handleMouseLeave = () => {
-    this.setState({
-      open: false,
-    });
+    this.onAnchorEl = false;
+    if (!this.onTargetEl) {
+      this.timeoutAnchor = setTimeout(() => {
+        this.setState({
+          open: false,
+        });
+      }, 300);
+    }
   }
 
   handleClick = () => {
@@ -87,9 +102,35 @@ class Dropdown extends Component {
     });
   }
 
-  timeoutLeave = (event) => {
-    console.log(1);
-    this.timeout = setTimeout(() => this.handleMouseLeave(event), 500);
+  createWrappedChildren(children) {
+    return (
+      Children.map(children, (child) => {
+        return isValidElement(child) ? cloneElement(child, {
+          onMouseEnter: (event) => {
+            this.onTargetEl = true;
+            if (this.timeoutAnchor) {
+              clearTimeout(this.timeoutAnchor);
+            }
+            if (child.props.onMouseEnter) {
+              child.props.onMouseEnter(event);
+            }
+          },
+          onMouseLeave: (event) => {
+            this.onTargetEl = false;
+            if (!this.onAnchorEl) {
+              this.timeoutTarget = setTimeout(() => {
+                this.setState({
+                  open: false,
+                });
+              }, 300);
+            }
+            if (child.props.onMouseLeave) {
+              child.props.onMouseLeave(event);
+            }
+          },
+        }) : child;
+      })
+    );
   }
 
   render() {
@@ -114,7 +155,7 @@ class Dropdown extends Component {
           onRequestClose={this.handleRequestClose}
           useLayerForClickAway={useLayerForClickAway}
         >
-          {children}
+          {this.createWrappedChildren(children)}
         </Popover>
       </span>
     );

@@ -213,7 +213,11 @@ class Hello extends Component {
             }
             align="middle"
           >
-            <div style={{height: '200px', lineHeight: '200px'}} onClick={() => console.log(1)}>this is a dropdown</div>
+            <div
+              style={{height: '200px', lineHeight: '200px'}}
+              onClick={() => console.log(1)}
+              onMouseEnter={() => console.log('onMouseEnter')}
+            >this is a dropdown</div>
           </Dropdown>
         </div>
         <div style={{marginTop: '500px'}}>
