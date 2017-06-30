@@ -111,8 +111,6 @@ class Popover extends Component {
     }
   }
 
-  timeout = null;
-
   gracefullyClose() {
     if (this.timeout !== null) return;
     this.setState({closing: true});

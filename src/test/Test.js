@@ -7,7 +7,7 @@ import Popover from '../Popover';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Shade from '../Shade';
 import List, {ListItem, SelectableList} from '../List';
-import Dropdown from '../Dropdown';
+import Dropdown, {DropdownMenu, DropdownMenuItem} from '../Dropdown';
 
 injectTapEventPlugin();
 
@@ -92,7 +92,7 @@ class Hello extends Component {
         />
         <Button style={{backgroundColor: '#666'}} label="确定按钮" />
         <Button href="http://www.baidu.com" label="确定按钮" />
-        <Button label="default">确定按钮</Button>
+        <Button label="default" />
         <div>
           <SvgIcon color="red">
             <path d="M11 20v-3H7v3.67C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V17h-4.4L11 20z" />
@@ -195,29 +195,60 @@ class Hello extends Component {
           <Dropdown
             anchorEl={
               <Button
+                onClick={() => console.log('button click')}
                 type="text"
-                label="下拉菜单"
+                style={{marginRight: '100px'}}
+                label="下拉菜单1"
               />
             }
             align="middle"
             trigger="click"
           >
-            <div style={{height: '200px', lineHeight: '200px'}} onClick={() => console.log(1)}>this is a dropdown</div>
+            <DropdownMenu
+              className="tt"
+              onClick={() => console.log('click')}
+              onChange={(event, value) => console.log(event.target, value)}
+            >
+              <DropdownMenuItem
+                className="itts"
+                value={1}
+                onTouchTap={() => {
+                  console.log('tap');
+                }}
+              >
+                <div>menu1</div>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="itts" value={2}>
+                <div>menu2</div>
+              </DropdownMenuItem>
+            </DropdownMenu>
           </Dropdown>
           <Dropdown
             anchorEl={
               <Button
                 type="text"
-                label="下拉菜单"
+                label="下拉菜单2"
               />
             }
             align="middle"
           >
-            <div
-              style={{height: '200px', lineHeight: '200px'}}
-              onClick={() => console.log(1)}
+            <DropdownMenu
               onMouseEnter={() => console.log('onMouseEnter')}
-            >this is a dropdown</div>
+              onChange={(event, value) => console.log(event.target, value)}
+            >
+              <DropdownMenuItem className="itts" value={4}>
+                <div>menu1</div>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="itts" value={4}>
+                <div>menu2</div>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="itts" value={4}>
+                <div>menu3</div>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="itts" value={4}>
+                <div>menu4</div>
+              </DropdownMenuItem>
+            </DropdownMenu>
           </Dropdown>
         </div>
         <div style={{marginTop: '500px'}}>
@@ -255,6 +286,7 @@ class Hello extends Component {
           >
             <div style={{height: '200px', lineHeight: '200px'}}>this is a popover</div>
           </Popover>
+
         </div>
       </div>
     );

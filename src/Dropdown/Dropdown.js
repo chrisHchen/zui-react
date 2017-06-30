@@ -1,8 +1,9 @@
-import React, {Component, isValidElement, cloneElement, Children} from 'react';
+import React, {Component, cloneElement, Children} from 'react';
 import PropTypes from 'prop-types';
 import Popover from '../Popover';
 import ReactDOM from 'react-dom';
 import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
+import DropdownMenu from './DropdownMenu';
 import Event from '../util/event';
 
 class Dropdown extends Component {
@@ -15,6 +16,7 @@ class Dropdown extends Component {
     anchorEl: PropTypes.element,
     animation: PropTypes.func,
     children: PropTypes.node,
+    onChange: PropTypes.func,
     targetAlign: PropTypes.oneOf([
       'left',
       'middle',
@@ -30,6 +32,7 @@ class Dropdown extends Component {
   static defaultProps = {
     anchorAlign: 'middle',
     animation: PopoverAnimationVertical,
+    onChange: () => {},
     trigger: 'hover',
     targetAlign: 'middle',
     useLayerForClickAway: false,
@@ -44,7 +47,7 @@ class Dropdown extends Component {
       trigger,
       // anchorEl,
     } = this.props;
-    this.el = ReactDOM.findDOMNode(this);
+    // this.el = ReactDOM.findDOMNode(this);
     if (this.el) {
       if (trigger === 'hover') {
         Event.on(this.el, 'mouseenter', this.handleMouseEnter);
@@ -90,7 +93,10 @@ class Dropdown extends Component {
     }
   }
 
-  handleClick = () => {
+  handleClick = (event) => {
+    if (this.props.anchorEl.props.onClick) {
+      this.props.anchorEl.props.onClick(event);
+    }
     this.setState({
       open: !this.state.open,
     });
@@ -98,66 +104,89 @@ class Dropdown extends Component {
 
   handleRequestClose = () => {
     this.setState({
-      open: !this.state.open,
+      open: false,
     });
   }
 
   createWrappedChildren(children) {
     return (
       Children.map(children, (child) => {
-        return isValidElement(child) ? cloneElement(child, {
-          onMouseEnter: (event) => {
-            this.onTargetEl = true;
-            if (this.timeoutAnchor) {
-              clearTimeout(this.timeoutAnchor);
-            }
-            if (child.props.onMouseEnter) {
-              child.props.onMouseEnter(event);
-            }
-          },
-          onMouseLeave: (event) => {
-            this.onTargetEl = false;
-            if (!this.onAnchorEl) {
-              this.timeoutTarget = setTimeout(() => {
-                this.setState({
-                  open: false,
-                });
-              }, 300);
-            }
-            if (child.props.onMouseLeave) {
-              child.props.onMouseLeave(event);
-            }
-          },
-        }) : child;
+        const {
+          onMouseEnter,
+          onMouseLeave,
+          children, // eslint-disable-line no-unused-vars
+          ...other
+        } = child.props;
+
+        if (child.type === DropdownMenu) {
+          return cloneElement(child, {
+            onMouseEnter: (event) => {
+              this.onTargetEl = true;
+              if (this.timeoutAnchor) {
+                clearTimeout(this.timeoutAnchor);
+              }
+              if (onMouseEnter) {
+                onMouseEnter(event);
+              }
+            },
+            onMouseLeave: (event) => {
+              this.onTargetEl = false;
+              if (!this.onAnchorEl && this.props.trigger === 'hover') {
+                this.timeoutTarget = setTimeout(() => {
+                  this.setState({
+                    open: false,
+                  });
+                }, 300);
+              }
+              if (onMouseLeave) {
+                onMouseLeave(event);
+              }
+            },
+            onChange: this.props.onChange,
+            ...other,
+          });
+        } else {
+          return null;
+        }
       })
     );
   }
 
-  render() {
+  createAnchorChildren(anchorChildren) {
     const {
       anchorAlign,
       animation,
-      anchorEl,
       children,
       targetAlign,
       useLayerForClickAway,
     } = this.props;
 
-    return (
-      <span style={{display: 'inline-block'}}>
-        {anchorEl}
-        <Popover
-          open={this.state.open}
-          anchorEl={this.el}
-          animation={animation}
-          anchorOrigin={{horizontal: targetAlign, vertical: 'bottom'}}
-          targetOrigin={{horizontal: anchorAlign, vertical: 'top'}}
-          onRequestClose={this.handleRequestClose}
-          useLayerForClickAway={useLayerForClickAway}
-        >
-          {this.createWrappedChildren(children)}
-        </Popover>
-      </span>
+    const popover = (
+      <Popover
+        open={this.state.open}
+        anchorEl={this.el}
+        animation={animation}
+        anchorOrigin={{horizontal: targetAlign, vertical: 'bottom'}}
+        targetOrigin={{horizontal: anchorAlign, vertical: 'top'}}
+        onRequestClose={this.handleRequestClose}
+        useLayerForClickAway={useLayerForClickAway}
+        key="popover"
+      >
+        {this.createWrappedChildren(children)}
+      </Popover>
+    );
+    anchorChildren = Children.toArray(anchorChildren);
+    // anchorChildren.push(popover);
+    anchorChildren.push(popover);
+    return anchorChildren;
+  }
+
+  render() {
+    return cloneElement(
+      this.props.anchorEl, {
+        ref: (el) => this.el = ReactDOM.findDOMNode(el),
+      },
+      this.createAnchorChildren(this.props.anchorEl.props.children)
     );
   }
 }

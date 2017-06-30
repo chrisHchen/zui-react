@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
+import React, {Component, Children} from 'react';
 import PropTypes from 'prop-types';
 import ReinforcedButton from '../internal/ReinforcedButton';
+import Popover from '../Popover';
 import classNames from 'classnames';
 import './Button.css';
 
@@ -69,6 +70,13 @@ class Button extends Component {
     this.props.onTouchStart(event);
   };
 
+  createChildren(children) {
+    children = Children.toArray(children);
+    children = children.filter((child) => child.type === Popover);
+    children.push(<span key="label" className="zui-button_inner">{this.props.label}</span>);
+    return children;
+  }
+
   render() {
     const {
       children,
@@ -79,7 +87,8 @@ class Button extends Component {
       ...other
     } = this.props;
 
-    const reinforcedButtonChildren = label ? (<span key="label" className="zui-button_inner">{label}</span>) : children;
+    const reinforcedButtonChildren = children ? this.createChildren(children) :
+      (<span key="label" className="zui-button_inner">{label}</span>) ;
     const hovered = (this.state.isKeyboardFocused || this.state.touch) && !disabled;
 
     const typeClass = classNames({

@@ -1,0 +1,22 @@
+@import '../theme/variables.css';
+
+.zui-dropdown-menu{
+  background-color: #fff;
+  padding: 5px 0;
+  margin: 0;
+  box-sizing: border-box;
+
+  & .zui-dropdown-menu-item{
+    list-style: none;
+    padding: 0 10px;
+    line-height: 36px;
+    margin: 0;
+    cursor: pointer;
+    min-width: 100px;
+    box-sizing: inherit;
+
+    &:hover{
+      background-color: var(--color-base-light);
+    }
+  }
+}
