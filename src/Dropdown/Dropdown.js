@@ -16,6 +16,7 @@ class Dropdown extends Component {
     anchorEl: PropTypes.element,
     animation: PropTypes.func,
     children: PropTypes.node,
+    hideOnClick: PropTypes.bool,
     onChange: PropTypes.func,
     targetAlign: PropTypes.oneOf([
       'left',
@@ -36,6 +37,7 @@ class Dropdown extends Component {
     trigger: 'hover',
     targetAlign: 'middle',
     useLayerForClickAway: false,
+    hideOnClick: true,
   }
 
   state = {
@@ -108,6 +110,15 @@ class Dropdown extends Component {
     });
   }
 
+  handleChange = (event) => {
+    if (this.props.hideOnClick) {
+      this.setState({
+        open: false,
+      });
+    }
+    this.props.onChange(event);
+  }
+
   createWrappedChildren(children) {
     return (
       Children.map(children, (child) => {
@@ -142,7 +153,7 @@ class Dropdown extends Component {
                 onMouseLeave(event);
               }
             },
-            onChange: this.props.onChange,
+            onChange: this.handleChange,
             ...other,
           });
         } else {

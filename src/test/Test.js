@@ -203,11 +203,11 @@ class Hello extends Component {
             }
             align="middle"
             trigger="click"
+            onChange={(event, value) => console.log(event.target, value)}
           >
             <DropdownMenu
               className="tt"
               onClick={() => console.log('click')}
-              onChange={(event, value) => console.log(event.target, value)}
             >
               <DropdownMenuItem
                 className="itts"
@@ -231,11 +231,36 @@ class Hello extends Component {
               />
             }
             align="middle"
+            onChange={(event, value) => console.log(event.target, value)}
           >
             <DropdownMenu
               onMouseEnter={() => console.log('onMouseEnter')}
-              onChange={(event, value) => console.log(event.target, value)}
             >
+              <DropdownMenuItem className="itts" value={4}>
+                <div>menu1</div>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="itts" value={4}>
+                <div>menu2</div>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="itts" value={4}>
+                <div>menu3</div>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="itts" value={4}>
+                <div>menu4</div>
+              </DropdownMenuItem>
+            </DropdownMenu>
+          </Dropdown>
+          <Dropdown
+            hideOnClick={false}
+            anchorEl={
+              <Button
+                type="text"
+                label="下拉菜单 hideOnClick"
+              />
+            }
+            align="middle"
+          >
+            <DropdownMenu>
               <DropdownMenuItem className="itts" value={4}>
                 <div>menu1</div>
               </DropdownMenuItem>
