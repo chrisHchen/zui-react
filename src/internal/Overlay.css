@@ -1,0 +1,24 @@
+@import '../theme/variables.css';
+
+.zui-overlay{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: -100%;
+  opacity: 0;
+  background-color: var(--color-base-sub);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  will-change: opacity;
+  transform: translateZ(0px);
+  transition: left 0ms var(--ease-out) 400ms, opacity 400ms var(--ease-out) 0ms;
+  z-index: var(--overlay-zIndex);
+  pointer-events: none;
+
+  &.isShow{
+    left: 0px;
+    opacity: 1;
+    transition: left 0ms var(--ease-out) 0ms, opacity 400ms var(--ease-out) 0ms;
+    pointer-events: auto;
+  }
+}

@@ -6,6 +6,7 @@ import FontIcon from '../FontIcon';
 import Popover from '../Popover';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Shade from '../Shade';
+import Drawer from '../Drawer';
 import List, {ListItem, SelectableList} from '../List';
 import Dropdown, {DropdownMenu, DropdownMenuItem} from '../Dropdown';
 
@@ -22,6 +23,10 @@ class Hello extends Component {
   state = {
     open: false,
     open2: false,
+    drawerOpen: false,
+    drawerOpen2: false,
+    drawerOpen3: false,
+    drawerOpen4: false,
   }
   handleTouchTap = () => {
     console.log('touchTap');  // eslint-disable-line
@@ -53,6 +58,21 @@ class Hello extends Component {
       open2: false,
     });
   }
+
+  handleToggle = () => {
+    this.setState({drawerOpen: !this.state.drawerOpen});
+  };
+
+  handleToggle2 = () => {
+    this.setState({drawerOpen2: !this.state.drawerOpen2});
+  };
+  handleToggle3 = () => {
+    this.setState({drawerOpen3: !this.state.drawerOpen3});
+  };
+  handleToggle4 = () => {
+    this.setState({drawerOpen4: !this.state.drawerOpen4});
+  };
+
   render() {
     return (
       <div style={{height: '2000px'}}>
@@ -276,7 +296,68 @@ class Hello extends Component {
             </DropdownMenu>
           </Dropdown>
         </div>
-        <div style={{marginTop: '500px'}}>
+
+        {/* <div style={{margin: '100px 0 0 300px'}}>
+          <Button
+            label="Toggle Drawer"
+            onTouchTap={this.handleToggle}
+          />
+          <Drawer open={this.state.drawerOpen}>
+            <div>Menu Item 1</div>
+            <div>Menu Item 2</div>
+          </Drawer>
+        </div>
+
+        <div style={{margin: '100px 0 0 300px'}}>
+          <Button
+            label="Toggle Drawer width=150"
+            onTouchTap={this.handleToggle2}
+          />
+          <Drawer open={this.state.drawerOpen2} width={150}>
+            <div>Menu Item 1</div>
+            <div>Menu Item 2</div>
+            <div>width=150</div>
+          </Drawer>
+        </div>
+
+        <div style={{margin: '100px 0 0 300px'}}>
+          <Button
+            label="Toggle Drawer not right-side"
+            onTouchTap={this.handleToggle4}
+          />
+          <Drawer
+            open={this.state.drawerOpen4}
+            width={200}
+            docked={false}
+            openSecondary={true}
+            onRequestChange={(drawerOpen4) => this.setState({drawerOpen4})}
+          >
+            <div>Menu Item 1</div>
+            <div>Menu Item 2</div>
+            <div>right-side</div>
+          </Drawer>
+        </div>*/}
+
+        <div style={{margin: '100px 0 0 300px'}}>
+          <Button
+            label="Toggle Drawer not docked"
+            onTouchTap={this.handleToggle3}
+          />
+          <Drawer
+            open={this.state.drawerOpen3}
+            width={150}
+            docked={false}
+            onRequestChange={(drawerOpen3) => {
+              this.setState({drawerOpen3});
+            }}
+          >
+            <div>Menu Item 1</div>
+            <div>Menu Item 2</div>
+            <div>not docked</div>
+          </Drawer>
+        </div>
+
+        <div style={{marginTop: '100px'}}>
           <Button
             type="text"
             label="click me"

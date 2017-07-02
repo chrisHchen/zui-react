@@ -1,0 +1,29 @@
+@import '../theme/variables.css';
+
+.zui-drawer-container{
+  @apply --depth-shade-2;
+  color: var(--color-base-text);
+  background-color: var(--color-base-white);
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  border-radius: 0px;
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: var(--drawer-zIndex);
+  left: 0px;
+  top: 0px;
+  transform: translate(-260px, 0px);
+  overflow: auto;
+  transition: transform 450ms var(--ease-out) 0ms;
+
+  &.isOpen{
+    transform: translate(0px, 0px);
+  }
+
+  &.positioned-right{
+    right: 0px;
+    left: auto;
+    transform: translate(260px, 0px);
+  }
+}

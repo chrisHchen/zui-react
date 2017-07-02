@@ -8,6 +8,7 @@ class Shade extends Component {
   static propTypes = {
     children: PropTypes.node,
     circle: PropTypes.bool,
+    className: PropTypes.string,
     style: PropTypes.object,
     zDepth: propTypes.shade,
   }
@@ -20,16 +21,20 @@ class Shade extends Component {
   render() {
     const {
       children,
+      className,
       circle,
       style,
       zDepth,
       ...other
     } = this.props;
+
     const mergedClass = classNames({
       'zui-shade': true,
       [`z-depth-${zDepth}`]: zDepth,
       'circled': !!circle,
+      [className]: !!className,
     });
+
     return (
       <div
         style={style}

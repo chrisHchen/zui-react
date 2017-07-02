@@ -13,7 +13,7 @@ class Dropdown extends Component {
       'middle',
       'right',
     ]),
-    anchorEl: PropTypes.element,
+    anchorEl: PropTypes.element.isRequired,
     animation: PropTypes.func,
     children: PropTypes.node,
     hideOnClick: PropTypes.bool,
@@ -110,13 +110,13 @@ class Dropdown extends Component {
     });
   }
 
-  handleChange = (event) => {
+  handleChange = (event, value) => {
     if (this.props.hideOnClick) {
       this.setState({
         open: false,
       });
     }
-    this.props.onChange(event);
+    this.props.onChange(event, value);
   }
 
   createWrappedChildren(children) {

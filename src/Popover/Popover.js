@@ -183,8 +183,8 @@ class Popover extends Component {
 
   componentClickAway = (event) => {
     event.preventDefault();
-    if (this.props.trigger !== 'hover' &&
-        Dom.isDescendant(this.props.anchorEl, event.target) &&
+    if (this.props.trigger === 'click' ||
+        !Dom.isDescendant(this.props.anchorEl, event.target) &&
         this.props.anchorEl !== event.target) {
       this.requestClose('clickAway');
     }
