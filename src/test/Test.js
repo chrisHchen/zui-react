@@ -297,7 +297,7 @@ class Hello extends Component {
           </Dropdown>
         </div>
 
-        {/* <div style={{margin: '100px 0 0 300px'}}>
+        <div style={{margin: '100px 0 0 300px'}}>
           <Button
             label="Toggle Drawer"
             onTouchTap={this.handleToggle}
@@ -328,7 +328,6 @@ class Hello extends Component {
           <Drawer
             open={this.state.drawerOpen4}
             width={200}
-            docked={false}
             openSecondary={true}
             onRequestChange={(drawerOpen4) => this.setState({drawerOpen4})}
           >
@@ -336,7 +335,7 @@ class Hello extends Component {
             <div>Menu Item 2</div>
             <div>right-side</div>
           </Drawer>
-        </div>*/}
+        </div>
 
         <div style={{margin: '100px 0 0 300px'}}>
           <Button

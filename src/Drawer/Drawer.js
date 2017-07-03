@@ -10,6 +10,7 @@ import autoPrefix from '../util/autoPrefix';
 import propTypes from '../util/propTypes';
 import './Drawer.css';
 
+// docked drawer should be only one at any given time
 let openNavEventHandler = null;
 
 class Drawer extends Component {
@@ -62,11 +63,17 @@ class Drawer extends Component {
 
   componentWillReceiveProps(nextProps) {
     // If controlled then the open prop takes precedence.
-    console.log(nextProps.open);
     if (nextProps.open !== null) {
       this.setState({
         open: nextProps.open,
       });
+      if (this.overlay) {
+        if (nextProps.open) {
+          this.overlay.setOpacity(1);
+        } else {
+          this.overlay.setOpacity(0);
+        }
+      }
       // Otherwise, if docked is changed, change the open state for when uncontrolled.
     } else if (this.props.docked !== nextProps.docked) {
       this.setState({
@@ -106,7 +113,6 @@ class Drawer extends Component {
 
     const touchStartX = event.touches[0].pageX;
     const touchStartY = event.touches[0].pageY;
-
     // Open only if swiping from far left (or right) while closed
     if (swipeAreaWidth !== null && !this.state.open) {
       if (this.props.openSecondary) {
@@ -117,7 +123,6 @@ class Drawer extends Component {
         if (touchStartX > swipeAreaWidth) return;
       }
     }
-
     if (!this.state.open &&
          (openNavEventHandler !== this.onBodyTouchStart ||
           this.props.disableSwipeToOpen)
@@ -128,7 +133,6 @@ class Drawer extends Component {
     this.maybeSwiping = true;
     this.touchStartX = touchStartX;
     this.touchStartY = touchStartY;
-
     document.body.addEventListener('touchmove', this.onBodyTouchMove);
     document.body.addEventListener('touchend', this.onBodyTouchEnd);
     document.body.addEventListener('touchcancel', this.onBodyTouchEnd);
@@ -137,7 +141,6 @@ class Drawer extends Component {
   onBodyTouchMove = (event) => {
     const currentX = event.touches[0].pageX;
     const currentY = event.touches[0].pageY;
-
     if (this.state.swiping) {
       event.preventDefault();
       this.setPosition(this.getTranslateX(currentX));
@@ -189,10 +192,7 @@ class Drawer extends Component {
   };
 
   getMaxTranslateX() {
-    const drawer = ReactDOM.findDOMNode(this.clickAwayableElement);
-    const cssWidth = window !== 'undefined' ?
-      window.getComputedStyle(drawer).width : 250;
-    const width = this.getTranslatedWidth() || cssWidth;
+    const width = this.getTranslatedWidth() || 250;
     return width + 10;
   }
 
@@ -297,12 +297,22 @@ class Drawer extends Component {
         />
       );
     }
+    const containerTransitionStyle = {};
+    if (this.state.swiping) {
+      autoPrefix.set(containerTransitionStyle, 'transition', 'unset');
+    }
+    if (!this.state.open) {
+      autoPrefix.set(
+        containerTransitionStyle,
+        'transform',
+        `translate(${this.getTranslateMultiplier() * this.getMaxTranslateX()}px, 0)`);
+    }
+
     const mergedContainerStyle = width ?
       Object.assign({
         width: `${this.getTranslatedWidth(width)}px`,
-        transition: this.state.swiping && 'unset',
-      }, containerStyle) :
-      containerStyle;
+      }, containerTransitionStyle, containerStyle) :
+      Object.assign(containerTransitionStyle, containerStyle);
 
     const mergeContainerClass = classNames({
       'zui-drawer-container': true,
