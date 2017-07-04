@@ -1,7 +1,8 @@
 {
   "presets": ["es2015", "stage-1", "react"],
   "plugins": [
-    "transform-object-assign"
+    "transform-object-assign",
+    "transform-dev-warning"
   ],
   "env": {
     "test": {

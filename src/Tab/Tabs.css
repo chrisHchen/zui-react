@@ -1,0 +1,25 @@
+@import '../theme/variables.css';
+
+.zui-tabs {
+  & .zui-tabs-header{
+    border-bottom: 1px solid var(--color-base-sub);
+    position: relative;
+    margin: 0 0 15px;
+  }
+
+  & .zui-tab-item{
+    padding: 0 16px;
+    height: 42px;
+    box-sizing: border-box;
+    line-height: 42px;
+    display: inline-block;
+    list-style: none;
+    font-size: 14px;
+    color: var(--color-base-text);
+    position: relative;
+
+    &.is-active{
+      color: var(--color-primary);
+    }
+  }
+}
