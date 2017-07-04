@@ -1,0 +1,13 @@
+@import '../theme/variables.css';
+
+.zui-avator-wrap{
+  color: rgb(255, 255, 255);
+  background-color: rgb(188, 188, 188);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  user-select: none;
+}

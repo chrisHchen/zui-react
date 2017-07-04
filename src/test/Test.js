@@ -7,6 +7,7 @@ import Popover from '../Popover';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Shade from '../Shade';
 import Drawer from '../Drawer';
+import Avatar from '../Avatar';
 import List, {ListItem, SelectableList} from '../List';
 import Dropdown, {DropdownMenu, DropdownMenuItem} from '../Dropdown';
 
@@ -133,6 +134,49 @@ class Hello extends Component {
             color="blue"
             hoverColor="green"
             style={{marginRight: '15px'}}
+          />
+        </div>
+        <div>
+          <Avatar
+            src="http://www.material-ui.com/images/uxceo-128.jpg"
+          />
+          <Avatar
+            src="http://www.material-ui.com/images/uxceo-128.jpg"
+            size={30}
+            style={{marginLeft: '20px'}}
+          />
+          <Avatar
+            icon={
+              <FontIcon className="iconfont icon-iphone" />
+            }
+            style={{marginLeft: '20px'}}
+          />
+          <Avatar
+            style={{marginLeft: '20px'}}
+          >
+          TAT
+          </Avatar>
+          <Avatar
+            icon={
+              <SvgIcon color="red" hoverColor="green">
+                <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z" />
+              </SvgIcon>
+            }
+            style={{marginLeft: '20px'}}
+          />
+          <Avatar
+            icon={
+              <SvgIcon hoverColor="green">
+                <path d="M11 20v-3H7v3.67C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V17h-4.4L11 20z" />
+                <path
+                  fillOpacity=".3" d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7
+                  5.33V17h4v-2.5H9L13 7v5.5h2L12.6 17H17V5.33C17 4.6 16.4 4 15.67 4z"
+                />
+              </SvgIcon>
+            }
+            color="#336699"
+            backgroundColor="rgb(236, 64, 122)"
+            style={{marginLeft: '20px'}}
           />
         </div>
         <div>
