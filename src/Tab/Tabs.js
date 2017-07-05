@@ -1,4 +1,4 @@
-import React, {Component, cloneElement, Children, isValidElement} from 'react';
+import React, {Component, cloneElement, Children, isValidElement, createElement} from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 // import FloatingBar from './FloatingBar';
@@ -82,9 +82,8 @@ class Tabs extends Component {
 
     if ((value && value !== tabValue) ||
       this.state.selectedIndex !== index) {
-      this.onChange(tabValue, event, tab);
+      this.props.onChange(tabValue || index, event, tab);
     }
-
     this.setState({selectedIndex: index});
 
     if (tab.props.onActive) {
@@ -110,10 +109,12 @@ class Tabs extends Component {
         to be a controlled component.`);
 
       tabContent.push(tab.props.children ?
-        cloneElement(tab.props.children, {
+        createElement('div', {
           key: index,
+          className: 'zui-tab-content-item',
           selected: this.getSelected(tab, index),
-        }) : undefined);
+          style: { display: !this.getSelected(tab, index) ? 'none' : undefined},
+        }, tab.props.children) : undefined);
 
       return cloneElement(tab, {
         key: index,

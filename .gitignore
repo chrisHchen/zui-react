@@ -4,6 +4,7 @@ build
 coverage
 example
 .eslintcache
+src/test/*
 
 # Exclude compiled files
 /lib

@@ -5,9 +5,9 @@ import classNames from 'classnames';
 
 class Tab extends Component {
   static propTypes = {
-    children: PropTypes.node,
     className: PropTypes.string,
     index: PropTypes.number,
+    name: PropTypes.string,
     onActive: PropTypes.func,
     onTouchTap: PropTypes.func,
     selected: PropTypes.bool,
@@ -25,7 +25,7 @@ class Tab extends Component {
     const {
       className,
       style,
-      children,
+      name,
       selected,
     } = this.props;
 
@@ -36,8 +36,12 @@ class Tab extends Component {
     });
 
     return (
-      <div className={mergedClassName} style={style}>
-        {children}
+      <div
+        className={mergedClassName}
+        style={style}
+        onTouchTap={this.handleTouchTap}
+      >
+        {name}
       </div>
     );
   }

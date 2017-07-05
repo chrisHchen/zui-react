@@ -2,7 +2,7 @@
 
 .zui-tabs {
   & .zui-tabs-header{
-    border-bottom: 1px solid var(--color-base-sub);
+    border-bottom: 1px solid var(--color-base-light);
     position: relative;
     margin: 0 0 15px;
   }
@@ -15,11 +15,23 @@
     display: inline-block;
     list-style: none;
     font-size: 14px;
-    color: var(--color-base-text);
+    color: var(--color-base-sub);
     position: relative;
+    cursor: pointer;
 
-    &.is-active{
+    &:hover{
+      color: var(--color-base-text);
+    }
+
+    &.is-active, &.is-active:hover{
       color: var(--color-primary);
+    }
+  }
+
+  .zui-tabs-content{
+    & .zui-tabs-content-item{
+      overflow: hidden;
+      position: relative;
     }
   }
 }
