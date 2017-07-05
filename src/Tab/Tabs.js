@@ -1,7 +1,8 @@
 import React, {Component, cloneElement, Children, isValidElement, createElement} from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import warning from 'warning';
-// import FloatingBar from './FloatingBar';
+import FloatingBar from './FloatingBar';
 import Tab from './Tab';
 import classNames from 'classnames';
 import './Tabs.css';
@@ -20,7 +21,10 @@ class Tabs extends Component {
     onChange: () => {},
   };
 
-  state = {selectedIndex: 0};
+  state = {
+    selectedIndex: 0,
+    tabWidthArray: [],
+  };
 
   componentWillMount() {
     const initialIndex = this.props.initialSelectedIndex;
@@ -32,6 +36,10 @@ class Tabs extends Component {
           initialIndex :
           0,
     });
+  }
+
+  componentDidMount() {
+    this.setTabWidthArray();
   }
 
   componentWillReceiveProps(newProps) {
@@ -91,12 +99,25 @@ class Tabs extends Component {
     }
   };
 
+  setTabWidthArray() {
+    const tabWidthArray = [];
+    const tabs = this.getTabs();
+    const tabCount = tabs.length;
+    for (let i = 0 ; i < tabCount ; i++) {
+      tabWidthArray[i] = ReactDOM.findDOMNode(this[`tab${i}`]).offsetWidth;
+    }
+    this.setState({
+      tabWidthArray,
+    });
+  }
+
   render() {
     const {
       className,
       value,
     } = this.props;
 
+    let selectedIndex = 0;
     const tabContent = [];
     const tabs = this.getTabs().map((tab, index) => {
       warning(tab.type === Tab,
@@ -108,18 +129,23 @@ class Tabs extends Component {
         does not have a value prop. Needs value if Tabs is going
         to be a controlled component.`);
 
+      const selected = this.getSelected(tab, index);
+      if (selected) {
+        selectedIndex = index;
+      }
       tabContent.push(tab.props.children ?
         createElement('div', {
           key: index,
           className: 'zui-tab-content-item',
-          selected: this.getSelected(tab, index),
+          selected,
           style: { display: !this.getSelected(tab, index) ? 'none' : undefined},
         }, tab.props.children) : undefined);
 
       return cloneElement(tab, {
+        ref: (el) => this[`tab${index}`] = el,
         key: index,
         index: index,
-        selected: this.getSelected(tab, index),
+        selected,
         onTouchTap: this.handleTabTouchTap,
       });
     });
@@ -129,9 +155,18 @@ class Tabs extends Component {
       [className]: !!className,
     });
 
+    const tabWidthArray = this.state.tabWidthArray;
+    const width = tabWidthArray[selectedIndex];
+    let translateX = 0;
+    tabWidthArray.forEach((tabWidth, index) => {
+      if (index < selectedIndex) {
+        translateX += tabWidthArray[index];
+      }
+    });
     return (
       <div className={mergedClassNames}>
         <div className="zui-tabs-header">
+          <FloatingBar width={width} translateX={translateX} />
           {tabs}
         </div>
         <div className="zui-tabs-content">

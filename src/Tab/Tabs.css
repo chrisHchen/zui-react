@@ -5,6 +5,7 @@
     border-bottom: 1px solid var(--color-base-light);
     position: relative;
     margin: 0 0 15px;
+    position: relative;
   }
 
   & .zui-tab-item{
@@ -28,10 +29,21 @@
     }
   }
 
-  .zui-tabs-content{
+  & .zui-tabs-content{
     & .zui-tabs-content-item{
       overflow: hidden;
       position: relative;
     }
+  }
+
+  & .zui-tab-floatingBar{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background-color: var(--color-primary);
+    z-index: 1;
+    transition: transform .3s var(--ease-out);
+    list-style: none;
   }
 }
