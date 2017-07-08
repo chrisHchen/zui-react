@@ -2,6 +2,7 @@
 
   /*base color*/
   --color-primary: #13ce66;
+  --color-primary-light: color(var(--color-primary) a(50%));
   --color-base-white: #fff;
   --color-base-black: #000;
   --color-base-grey: #efefef;

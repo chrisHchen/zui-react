@@ -4,10 +4,11 @@
   cursor: pointer;
   position: relative;
   overflow: visible;
-  display: table;
+  display: inline-block;
   height: auto;
   width: 100%;
   margin-bottom: 16px;
+  overflow: hidden;
 
   & .zui-toggle-checkbox{
     position: absolute;
@@ -38,7 +39,6 @@
 
   & .zui-toggle-wrap{
     transition: all 450ms var(--ease-out) 0ms;
-    float: left;
     position: relative;
     display: block;
     flex-shrink: 0;
@@ -70,5 +70,33 @@
     width: 20px;
     height: 20px;
     line-height: 24px;
+  }
+
+  &.is-switched{
+    & .zui-toggle-track{
+      background-color: var(--color-primary-light);
+    }
+
+    & .zui-toggle-thumb{
+      background-color: var(--color-primary);
+      left: 100%;
+      margin-left: -20px;
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+
+    & .zui-toggle-thumb{
+      background-color: rgb(224, 224, 224);
+    }
+  }
+
+  &.position-right{
+    & .zui-toggle-wrap{
+      margin-right: 8px;
+      margin-left: 0;
+    }
+
   }
 }
