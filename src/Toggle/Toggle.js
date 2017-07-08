@@ -64,12 +64,16 @@ class Toggle extends Component {
   }
   render( ) {
     const {
+      defaultToggled,
       label,
       labelStyle,
       labelPosition,
       className,
       disabled,
-      style } = this.props;
+      style,
+      toggled,
+    } = this.props;
+
     const mergedClass = classNames({
       'zui-toggle': true,
       [className]: !!className,
@@ -91,10 +95,19 @@ class Toggle extends Component {
       </div>,
       <label key="label" className="zui-toggle-label" style={labelStyle}>{label}</label>,
     ];
-
+    const inputProps = {
+      type: 'checkbox',
+      className: 'zui-toggle-checkbox',
+      onTouchTap: this.handleTouchTap,
+    };
+    if (this.props.hasOwnProperty('defaultToggled')) {
+      inputProps.defaultChecked = defaultToggled;
+    } else if (this.props.hasOwnProperty('toggled')) {
+      inputProps.checked = toggled;
+    }
     return (
       <div className={mergedClass} style={style}>
-        <input type="checkbox" className="zui-toggle-checkbox" onTouchTap={this.handleTouchTap} />
+        <input {...inputProps} />
         <div className="zui-toggle-track-wrap">
           {content}
         </div>
