@@ -3,7 +3,6 @@
 .zui-toggle{
   cursor: pointer;
   position: relative;
-  overflow: visible;
   display: inline-block;
   height: auto;
   width: 100%;

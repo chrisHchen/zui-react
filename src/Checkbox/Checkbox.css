@@ -1,0 +1,107 @@
+@import '../theme/variables.css';
+
+.zui-checkbox{
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  height: auto;
+  width: 100%;
+  margin-bottom: 16px;
+  overflow: hidden;
+
+  & .zui-toggle-checkbox{
+    position: absolute;
+    cursor: inherit;
+    pointer-events: all;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    left: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  & .zui-checkbox-track-wrap{
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  & .zui-checkbox-label{
+    position: relative;
+    display: block;
+    line-height: 24px;
+    color: var(--color-base-text);
+  }
+
+  & .zui-checkbox-uncheck-icon{
+    display: inline-block;
+    color: var(--color-base-text);
+    fill: var(--color-base-text);
+    height: 24px;
+    width: 24px;
+    user-select: none;
+    transition: opacity 600ms var(--ease-out) 100ms;
+    position: absolute;
+    opacity: 1;
+
+    @nest &.is-checked{
+      opacity: 0;
+    }
+  }
+
+  & .zui-checkbox-check-icon{
+    display: inline-block;
+    color: var(--color-primary);
+    fill: var(--color-primary);
+    height: 24px;
+    width: 24px;
+    user-select: none;
+    transition: opacity 400ms var(--ease-out) 0ms, transform 0ms var(--ease-out) 400ms;
+    position: absolute;
+    opacity: 0;
+    transform: scale(0);
+
+    @nest &.is-checked{
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  &.disabled{
+    cursor: not-allowed;
+
+    & .zui-checkbox-label{
+      color: var(--color-base-sublime);
+    }
+
+    & .zui-checkbox-uncheck-icon{
+      fill: var(--color-base-sublime);
+      color: var(--color-base-sublime);
+    }
+
+    & .zui-checkbox-check-icon{
+      fill: var(--color-base-sublime);
+      color: var(--color-base-sublime);
+    }
+  }
+
+  & .zui-checkbox-icon-wrap{
+    transition: all 450ms var(--ease-out) 0ms;
+    float: left;
+    position: relative;
+    display: block;
+    flex-shrink: 0;
+    width: 24px;
+    margin-right: 16px;
+    margin-left: 0px;
+    height: 24px;
+  }
+
+  &.position-left .zui-checkbox-icon-wrap{
+    margin-left: 16px;
+    margin-right: 0px;
+  }
+}
