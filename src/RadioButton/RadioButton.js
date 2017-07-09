@@ -22,17 +22,11 @@ class RadioButton extends Component {
   static defaultProps = {
     checked: false,
     disabled: false,
-    labelPosition: 'right',
   }
-
-  static defaultProps = {
-    disabled: false,
-    labelPosition: 'right',
-  };
 
   handleOnChange = (event) => {
     if (this.props.disabled) return;
-    if (this.props.onCheck) {
+    if (this.props.onCheck && !this.props.checked) {
       this.props.onCheck(event, this.props.value);
     }
   }
@@ -47,6 +41,7 @@ class RadioButton extends Component {
       disabled,
       style,
       checked,
+      value,
     } = this.props;
 
     const mergedClass = classNames({
@@ -85,15 +80,10 @@ class RadioButton extends Component {
       type: 'radio',
       className: 'zui-toggle-radio',
       onChange: this.handleOnChange,
+      value: value,
+      name: name,
+      checked: checked, // this is the controlled property for type = radio
     };
-
-    if (checked) {
-      inputProps.checked = checked;
-    }
-
-    if (name) {
-      inputProps.name = name;
-    }
 
     return (
       <div className={mergedClass} style={style}>
