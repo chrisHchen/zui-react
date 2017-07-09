@@ -1,0 +1,11 @@
+
+.zui-divider{
+  margin: -1px 0px 0px;
+  height: 1px;
+  border: none;
+  background-color: rgb(224, 224, 224);
+
+  &.inset{
+    margin-left: 72px;
+  }
+}
