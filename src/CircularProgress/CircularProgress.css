@@ -1,0 +1,12 @@
+@import '../theme/variables.css';
+
+.zui-circular-progress{
+  position: relative;
+  display: inline-block;
+
+  & .circle-path{
+    stroke: var(--color-primary);
+    stroke-linecap: round;
+    transition: all 1.5s ease-in-out;
+  }
+}
