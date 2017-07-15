@@ -1,0 +1,96 @@
+@import '../theme/variables.css';
+
+.zui-textfield-wrap{
+  font-size: 16px;
+  line-height: 24px;
+  width: 256px;
+  height: 72px;
+  display: inline-block;
+  position: relative;
+  background-color: transparent;
+  transition: height 200ms var(--ease-out) 0ms;
+  cursor: auto;
+
+  & .zui-textfield-label{
+    position: absolute;
+    line-height: 22px;
+    top: 38px;
+    transition: all 450ms var(--ease-out) 0ms;
+    z-index: 1;
+    transform: scale(1) translate(0px, 0px);
+    transform-origin: left top 0px;
+    pointer-events: none;
+    user-select: none;
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  & .zui-textfield-input{
+    padding: 0px;
+    position: relative;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--color-base-text);
+    cursor: inherit;
+    font-style: inherit;
+    font-variant: inherit;
+    font-weight: inherit;
+    font-stretch: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-family: inherit;
+    opacity: 1;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    height: 100%;
+    box-sizing: border-box;
+    margin-top: 14px;
+  }
+
+  & .zui-textfield-underline{
+    border-bottom: 1px solid rgb(224, 224, 224);
+    border-top: none rgb(224, 224, 224);
+    border-left: none rgb(224, 224, 224);
+    border-right: none rgb(224, 224, 224);
+    bottom: 8px;
+    box-sizing: content-box;
+    margin: 0px;
+    position: absolute;
+    width: 100%;
+  }
+
+  & .zui-textfield-underline-overlap{
+    border-bottom: 2px solid var(--color-primary);
+    border-top: none var(--color-primary);
+    border-left: none var(--color-primary);
+    border-right: none var(--color-primary);
+    bottom: 8px;
+    box-sizing: content-box;
+    margin: 0px;
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    transition: all 450ms var(--ease-out) 0ms;
+  }
+
+  & .zui-textfield-hint{
+    position: absolute;
+    opacity: 0;
+    color: var(--color-base-hint);
+    transition: all 450ms var(--ease-out) 0ms;
+    bottom: 12px;
+  }
+
+  @nest &.is-focused .zui-textfield-underline-overlap{
+    transform: scale(1);
+  }
+
+  @nest &.is-focused .zui-textfield-label{
+    transform: scale(0.75) translate(0px, -28px);
+    color: var(--color-primary);
+  }
+
+  @nest &.hint-show .zui-textfield-hint{
+    opacity: 1;
+  }
+}
