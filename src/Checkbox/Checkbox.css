@@ -43,7 +43,7 @@
     height: 24px;
     width: 24px;
     user-select: none;
-    transition: opacity 600ms var(--ease-out) 100ms;
+    transition: opacity 400ms var(--ease-out) 100ms;
     position: absolute;
     opacity: 1;
 
@@ -59,7 +59,7 @@
     height: 24px;
     width: 24px;
     user-select: none;
-    transition: opacity 400ms var(--ease-out) 0ms, transform 100ms var(--ease-out) 0ms;
+    transition: opacity 400ms var(--ease-out) 0ms, transform 400ms var(--ease-out) 0ms;
     position: absolute;
     opacity: 0;
     transform: scale(0);

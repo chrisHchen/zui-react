@@ -129,6 +129,7 @@ class TextField extends Component {
       [className]: !!className,
       'is-focused': this.state.hasValue || this.state.isFocused,
       'hint-show': !this.state.hasValue && this.state.isFocused,
+      'disabled': disabled,
     });
 
     const inputProps = {

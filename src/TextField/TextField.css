@@ -81,6 +81,10 @@
     bottom: 12px;
   }
 
+  &.disabled{
+    cursor: not-allowed;
+  }
+
   @nest &.is-focused .zui-textfield-underline-overlap{
     transform: scale(1);
   }
@@ -93,4 +97,9 @@
   @nest &.hint-show .zui-textfield-hint{
     opacity: 1;
   }
+
+  @nest &.disabled .zui-textfield-underline{
+    border-bottom: 2px dotted rgb(224, 224, 224);
+  }
+
 }
