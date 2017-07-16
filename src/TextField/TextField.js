@@ -150,6 +150,8 @@ class TextField extends Component {
     const {
       labelText,
       id,
+      errorText,
+      errorStyle,
       className,
       type,
       style,
@@ -176,6 +178,12 @@ class TextField extends Component {
     const wrapStyle = Object.assign({}, style, {
       height: `${(rows - 1) * 24 + (labelText ? 72 : 48) }px`,
     });
+
+    const errorTextStyle = Object.assign({}, errorStyle, {
+      bottom: (labelText && errorText) ? (multiLine ? '3px' : '15px') :
+        `${2 }px`,
+    });
+
     const inputProps = {
       id: inputId,
       ref: (elem) => this.input = elem,
@@ -213,6 +221,7 @@ class TextField extends Component {
         {inputElement}
         <hr className="zui-textfield-underline" />
         <hr className="zui-textfield-underline-overlap" />
+        <div className="zui-textfield-errortext" style={errorTextStyle}>{errorText}</div>
       </div>
     );
   }

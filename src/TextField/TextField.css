@@ -169,4 +169,12 @@
     -webkit-tap-highlight-color: var(--color-base-white);
     box-sizing: border-box;
   }
+
+  & .zui-textfield-errortext{
+    position: relative;
+    font-size: 12px;
+    line-height: 12px;
+    color: var(--color-danger);
+    transition: all 450ms var(--ease-out) 0ms;
+  }
 }
