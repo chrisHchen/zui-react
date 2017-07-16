@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-// import ReactDOM from 'react-dom';
+import EnhancedTextarea from './EnhancedTextarea';
+import ReactDOM from 'react-dom';
 import warning from 'warning';
 import shallowEqual from 'recompose/shallowEqual';
 import classNames from 'classnames';
@@ -20,10 +21,13 @@ class TextField extends Component {
     hintText: PropTypes.node,
     id: PropTypes.string,
     labelText: PropTypes.node,
+    multiLine: PropTypes.bool,
     name: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
+    rows: PropTypes.number,
+    rowsMax: PropTypes.number,
     style: PropTypes.object,
     type: PropTypes.string,
     value: PropTypes.any,
@@ -31,7 +35,9 @@ class TextField extends Component {
 
   static defaultProps = {
     disabled: false,
+    multiLine: false,
     type: 'text',
+    rows: 1,
   };
 
   state = {
@@ -108,6 +114,38 @@ class TextField extends Component {
       this.props.onFocus(event);
     }
   };
+
+  handleHeightChange = (event, height) => {
+    let newHeight = height + 24;
+    if (this.props.labelText) {
+      newHeight += 24;
+    }
+    ReactDOM.findDOMNode(this).style.height = `${newHeight}px`;
+  };
+
+  getInputNode() {
+    return this.props.multiLine ?
+      this.input.getInputNode() : ReactDOM.findDOMNode(this.input);
+  }
+
+  blur() {
+    if (this.input) {
+      this.getInputNode().blur();
+    }
+  }
+
+  focus() {
+    if (this.input) {
+      this.getInputNode().focus();
+    }
+  }
+
+  select() {
+    if (this.input) {
+      this.getInputNode().select();
+    }
+  }
+
   render() {
     const {
       labelText,
@@ -116,8 +154,11 @@ class TextField extends Component {
       type,
       style,
       hintText,
+      rows,
+      rowsMax,
       disabled,
       defaultValue,
+      multiLine,
       value,
     } = this.props;
 
@@ -132,6 +173,9 @@ class TextField extends Component {
       'disabled': disabled,
     });
 
+    const wrapStyle = Object.assign({}, style, {
+      height: `${(rows - 1) * 24 + (labelText ? 72 : 48) }px`,
+    });
     const inputProps = {
       id: inputId,
       ref: (elem) => this.input = elem,
@@ -140,13 +184,18 @@ class TextField extends Component {
       onChange: this.handleInputChange,
       onFocus: this.handleInputFocus,
     };
-
-    return (
-      <div style={style} className={mergedWrapClassName}>
-        <label htmlFor={inputId} className="zui-textfield-label">{labelText}</label>
-        <div className="zui-textfield-hint">
-          {hintText}
-        </div>
+    const inputElement = multiLine ?
+      (
+        <EnhancedTextarea
+          rows={rows}
+          rowsMax={rowsMax}
+          hintText={hintText}
+          labelText={labelText}
+          {...inputProps}
+          onHeightChange={this.handleHeightChange}
+        />
+      ) :
+      (
         <input
           type={type}
           className="zui-textfield-input"
@@ -154,6 +203,14 @@ class TextField extends Component {
           value={value}
           defaultValue={defaultValue}
         />
+      );
+    return (
+      <div style={wrapStyle} className={mergedWrapClassName}>
+        <label htmlFor={inputId} className="zui-textfield-label">{labelText}</label>
+        <div className="zui-textfield-hint">
+          {hintText}
+        </div>
+        {inputElement}
         <hr className="zui-textfield-underline" />
         <hr className="zui-textfield-underline-overlap" />
       </div>

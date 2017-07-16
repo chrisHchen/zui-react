@@ -102,4 +102,71 @@
     border-bottom: 2px dotted rgb(224, 224, 224);
   }
 
+  & .zui-textfield-textarea-wrap{
+    position: relative;
+    padding: 0px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--color-base-text);
+    cursor: inherit;
+    font-style: inherit;
+    font-variant: inherit;
+    font-weight: inherit;
+    font-stretch: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-family: inherit;
+    opacity: 1;
+    -webkit-tap-highlight-color: var(--color-base-white);
+    height: 100%;
+  }
+
+  & .zui-textfield-textarea-shadow{
+    height: auto;
+    width: 100%;
+    resize: none;
+    font-style: inherit;
+    font-variant: inherit;
+    font-weight: inherit;
+    font-stretch: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-family: inherit;
+    padding: 0px;
+    cursor: inherit;
+    position: absolute;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--color-base-text);
+    opacity: 1;
+    -webkit-tap-highlight-color: var(--color-base-white);
+    box-sizing: border-box;
+    overflow: hidden;
+    visibility: hidden;
+  }
+
+  & .zui-textfield-textarea{
+    width: 100%;
+    resize: none;
+    font-style: inherit;
+    font-variant: inherit;
+    font-weight: inherit;
+    font-stretch: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-family: inherit;
+    padding: 0px;
+    cursor: inherit;
+    position: relative;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.87);
+    opacity: 1;
+    -webkit-tap-highlight-color: var(--color-base-white);
+    box-sizing: border-box;
+  }
 }
