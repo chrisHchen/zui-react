@@ -1,7 +1,7 @@
 @import '../theme/variables.css';
 
 .zui-textfield-wrap{
-  font-size: 16px;
+  font-size: var(--fontsize-large);
   line-height: 24px;
   width: 256px;
   height: 72px;
@@ -172,7 +172,7 @@
 
   & .zui-textfield-errortext{
     position: relative;
-    font-size: 12px;
+    font-size: var(--fontsize-small);
     line-height: 12px;
     color: var(--color-danger);
     transition: all 450ms var(--ease-out) 0ms;

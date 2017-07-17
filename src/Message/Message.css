@@ -1,0 +1,25 @@
+@import '../theme/variables.css';
+
+.zui-message{
+  box-shadow: 0 2px 4px rgba(0,0,0,.12), 0 0 6px rgba(0,0,0,.04);
+  min-width: 300px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  color: var(--color-base-black);
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  background-color: var(--color-base-white);
+  transition: opacity .3s var(--ease-out), transform .4s var(--ease-out), top .4s var(--ease-out);
+  overflow: hidden;
+  opacity: 0;
+  top: 0;
+  z-index: var(--message-zIndex);
+
+  &.open{
+    opacity: 1;
+    transform: translate(-50%, 0);
+    top: 20px;
+  }
+}

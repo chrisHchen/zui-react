@@ -46,6 +46,7 @@
   }
 
   /*z-index*/
+  --message-zIndex: 2050;
   --modal-layer-zIndex: 2000;
   --drawer-zIndex: 1300;
   --overlay-zIndex: 1200;

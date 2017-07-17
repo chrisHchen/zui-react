@@ -15,7 +15,7 @@
     line-height: 42px;
     display: inline-block;
     list-style: none;
-    font-size: 14px;
+    font-size: var(--fontsize-normal);
     color: var(--color-base-sub);
     position: relative;
     cursor: pointer;
