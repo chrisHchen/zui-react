@@ -1,9 +1,11 @@
-import React, {Component} from 'react';
+import React, {Component, cloneElement} from 'react';
 import PropTypes from 'prop-types';
 import ClickAwayListener from '../internal/ClickAwayListener';
 import classNames from 'classnames';
 import './Message.css';
-
+import AlertError from '../svg-embedded/alertError';
+import Clear from '../svg-embedded/clear';
+import Done from '../svg-embedded/done';
 
 class Message extends Component {
   static propTypes = {
@@ -13,10 +15,12 @@ class Message extends Component {
     onRequestClose: PropTypes.func,
     open: PropTypes.bool.isRequired,
     style: PropTypes.object,
+    type: PropTypes.oneOf(['info', 'success', 'warning', 'error']),
   }
 
   static defaultProps = {
     autoHideDuration: 3000,
+    type: 'info',
   }
 
   state= {
@@ -121,6 +125,7 @@ class Message extends Component {
       message: messageProp, // eslint-disable-line no-unused-vars
       onRequestClose, // eslint-disable-line no-unused-vars
       style,
+      type,
     } = this.props;
 
     const {
@@ -132,10 +137,29 @@ class Message extends Component {
       'zui-message': true,
       'open': open,
     });
+
+    const typeClass = classNames({
+      [`zui-message-${type}`]: true,
+    });
+
+    let svgIconElement = (type === 'info' || type === 'warning') ?
+      <AlertError /> :
+      (type === 'success') ? <Done /> : <Clear />;
+
+    svgIconElement = cloneElement(svgIconElement, {
+      className: 'zui-message-svgicon',
+      style: {
+        width: '20px',
+        height: '20px',
+      },
+    });
     return (
       <ClickAwayListener onClickAway={open ? this.componentClickAway : null}>
         <div className={mergedClass} style={style}>
-          {message}
+          <div className={typeClass}>
+            {svgIconElement}
+          </div>
+          <div className="zui-message-content">{message}</div>
         </div>
       </ClickAwayListener>
     );

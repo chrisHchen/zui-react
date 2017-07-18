@@ -22,4 +22,40 @@
     transform: translate(-50%, 0);
     top: 20px;
   }
+
+  & .zui-message-content{
+    margin-left: 38px;
+  }
+
+  & .zui-message-info, & .zui-message-error, & .zui-message-success, & .zui-message-warning{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 38px;
+    height: 100%;
+  }
+
+  & .zui-message-info{
+    background-color: var(--color-info);
+  }
+
+  & .zui-message-warning{
+    background-color: var(--color-warning);
+  }
+
+  & .zui-message-error{
+    background-color: var(--color-danger);
+  }
+
+  & .zui-message-success{
+    background-color: var(--color-success);
+  }
+
+  & .zui-message-svgicon{
+    color: var(--color-base-white);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
