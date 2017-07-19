@@ -48,6 +48,7 @@
   /*z-index*/
   --message-zIndex: 2050;
   --modal-layer-zIndex: 2000;
+  --dialog-zIndex: 1500;
   --drawer-zIndex: 1300;
   --overlay-zIndex: 1200;
   --badge-zIndex: 2;
