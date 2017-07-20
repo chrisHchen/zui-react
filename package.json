@@ -6,7 +6,8 @@
   "scripts": {
     "test": "",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack-config/dev.js --progress",
-    "build": "cross-env NODE_ENV=production webpack --config webpack-config/prd.js"
+    "build:umd": "cross-env NODE_ENV=production webpack --config webpack-config/umd.js",
+    "build": "npm run build:umd"
   },
   "peerDependencies": {
     "react": "^15.6.0",
