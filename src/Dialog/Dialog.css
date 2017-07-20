@@ -22,15 +22,60 @@
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     background-color: var(--color-base-white);
     position: absolute;
-    width: 75%;
+    width: 50%;
     max-width: 768px;
     left: 50%;
     top: 15%;
     z-index: var(--dialog-zIndex);
     margin-bottom: 50px;
     transform: translate(-50%, 64px);
+
+    &.zui-dialog-tiny{
+      width: 30%;
+    }
+
+    &.zui-dialog-small{
+      width: 50%;
+    }
+
+    &.zui-dialog-large{
+      width: 90%;
+    }
+
+    &.zui-dialog-full{
+      width: 100%;
+    }
   }
 
+  & .zui-dialog-header{
+    padding: 20px 20px 0;
+  }
+
+  & .zui-dialog-close{
+    float: right;
+    cursor: pointer;
+  }
+
+  & .zui-dialog-title{
+    line-height: 1;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2d3d;
+  }
+
+  & .zui-dialog-content{
+    padding: 30px 20px;
+    color: #48576a;
+    font-size: 14px;
+  }
+
+  & .zui-dialog-footer{
+    padding: 10px 20px 15px;
+    text-align: right;
+    box-sizing: border-box;
+  }
+
+  /*animation*/
   & .zui-dialog-body.zui-dialog-enter {
     opacity: 0.01;
     transform: translate(-50%, 0);

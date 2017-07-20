@@ -10,7 +10,10 @@
   --color-warning: #f7ba2a;
   --color-danger: #ff4949;
   --color-info: #50bfff;
-  --color-base-text: color(var(--color-base-black) a(87%));
+  --color-icon: #bfcbd9;;
+
+  /*--color-base-text: color(var(--color-base-black) a(87%));*/
+  --color-base-text: #1f2d3d;
   --color-base-sub: color(var(--color-base-black) a(54%));
   --color-base-hint: color(var(--color-base-black) a(30%));
   --color-base-light: color(var(--color-base-black) a(10%));
@@ -45,7 +48,7 @@
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 60px, rgba(0, 0, 0, 0.22) 0px 15px 20px;
   }
 
-  /*z-index*/
+  /*zIndex*/
   --message-zIndex: 2050;
   --modal-layer-zIndex: 2000;
   --dialog-zIndex: 1500;
