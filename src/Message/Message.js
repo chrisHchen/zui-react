@@ -2,7 +2,6 @@ import React, {Component, cloneElement} from 'react';
 import PropTypes from 'prop-types';
 import ClickAwayListener from '../internal/ClickAwayListener';
 import classNames from 'classnames';
-import './Message.css';
 import AlertError from '../svg-embedded/alertError';
 import Clear from '../svg-embedded/clear';
 import Done from '../svg-embedded/done';

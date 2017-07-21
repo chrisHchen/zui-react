@@ -1,7 +1,6 @@
 import {Component} from 'react';
 import PropTypes from 'prop-types';
 import {unstable_renderSubtreeIntoContainer, unmountComponentAtNode} from 'react-dom';
-import './ModalLayer.css';
 import Dom from '../util/dom';
 
 class ModalLayer extends Component {

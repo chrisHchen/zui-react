@@ -6,7 +6,6 @@ import ReinforcedButton from '../internal/ReinforcedButton';
 import classNames from 'classnames';
 import OpenIcon from '../svg-embedded/expand-less';
 import CloseIcon from '../svg-embedded/expand-more';
-import './ListItem.css';
 
 const nestedLevelDepth = 18;
 

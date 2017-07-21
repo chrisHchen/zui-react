@@ -1,7 +1,6 @@
 import React, {Component, cloneElement} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import './Avator.css';
 
 class Avator extends Component {
   static propTypes = {

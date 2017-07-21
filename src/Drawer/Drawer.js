@@ -8,7 +8,6 @@ import Overlay from '../internal/Overlay';
 import Shade from '../Shade';
 import autoPrefix from '../util/autoPrefix';
 import propTypes from '../util/propTypes';
-import './Drawer.css';
 
 // docked drawer should be only one at any given time
 let openNavEventHandler = null;

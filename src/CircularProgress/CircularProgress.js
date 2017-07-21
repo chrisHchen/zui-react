@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import autoPrefix from '../util/autoPrefix';
-import './CircularProgress.css';
 
 function getArcLength(fraction, props) {
   return fraction * Math.PI * (props.size - props.thickness);

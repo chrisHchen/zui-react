@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import propTypes from '../util/propTypes';
-import './PopoverAnimationDefault.css';
 
 class PopoverAnimationDefault extends Component {
   static propTypes = {

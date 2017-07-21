@@ -2,7 +2,6 @@ import React, {Component, Children, cloneElement} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import DropdownMenuItem from './DropdownMenuItem';
-import './DropdownMenu.css';
 
 class DropdownMenu extends Component {
   static zuiName = 'DropdownMenu';

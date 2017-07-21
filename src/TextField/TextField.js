@@ -4,8 +4,9 @@ import EnhancedTextarea from './EnhancedTextarea';
 import ReactDOM from 'react-dom';
 import warning from 'warning';
 import shallowEqual from 'recompose/shallowEqual';
+import Popover from '../Popover';
+import NavigationArrowDropDown from '../svg-embedded/arrow-drop-down';
 import classNames from 'classnames';
-import './TextField.css';
 
 function isValid(value) {
   return value !== '' && value !== undefined && value !== null && !(Array.isArray(value) && value.length === 0);
@@ -13,6 +14,8 @@ function isValid(value) {
 
 class TextField extends Component {
   static propTypes = {
+    appendIcon: PropTypes.bool,
+    children: PropTypes.node,
     className: PropTypes.string,
     defaultValue: PropTypes.any,
     disabled: PropTypes.bool,
@@ -148,6 +151,8 @@ class TextField extends Component {
 
   render() {
     const {
+      appendIcon,
+      children,
       labelText,
       id,
       errorText,
@@ -162,6 +167,7 @@ class TextField extends Component {
       defaultValue,
       multiLine,
       value,
+      ...other
     } = this.props;
 
 
@@ -171,7 +177,8 @@ class TextField extends Component {
       'zui-textfield-wrap': true,
       [className]: !!className,
       'is-focused': this.state.hasValue || this.state.isFocused,
-      'hint-show': !this.state.hasValue && this.state.isFocused,
+      'hint-show': (!this.state.hasValue && !labelText) ||
+                    (!this.state.hasValue && !!labelText && this.state.isFocused),
       'disabled': disabled,
     });
 
@@ -192,6 +199,11 @@ class TextField extends Component {
       onChange: this.handleInputChange,
       onFocus: this.handleInputFocus,
     };
+
+    const inputStyle = Object.assign({}, {
+      marginTop: labelText && !multiLine ? '14px' : '0',
+    });
+
     const inputElement = multiLine ?
       (
         <EnhancedTextarea
@@ -205,13 +217,27 @@ class TextField extends Component {
       ) :
       (
         <input
+          style={inputStyle}
           type={type}
           className="zui-textfield-input"
+          {...other}
           {...inputProps}
           value={value}
           defaultValue={defaultValue}
         />
       );
+    /**
+     *select component will need this
+     */
+    const popover = React.Children.map(children, (child) => {
+      if (child.type === Popover) {
+        return child;
+      }
+    });
+    const appendIconClassName = classNames({
+      'zui-select-arraw': true,
+      'is-drop': !!this.state.isFocused,
+    });
     return (
       <div style={wrapStyle} className={mergedWrapClassName}>
         <label htmlFor={inputId} className="zui-textfield-label">{labelText}</label>
@@ -222,6 +248,11 @@ class TextField extends Component {
         <hr className="zui-textfield-underline" />
         <hr className="zui-textfield-underline-overlap" />
         <div className="zui-textfield-errortext" style={errorTextStyle}>{errorText}</div>
+        {popover}
+        {
+          appendIcon &&
+          <NavigationArrowDropDown className={appendIconClassName} />
+        }
       </div>
     );
   }

@@ -8,7 +8,6 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import ClassNames from 'classnames';
 import Button from '../Button';
 import Clear from '../svg-embedded/clear';
-import './Dialog.css';
 
 class Dialog extends Component {
   static propTypes = {

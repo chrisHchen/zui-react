@@ -5,7 +5,6 @@ import warning from 'warning';
 import FloatingBar from './FloatingBar';
 import Tab from './Tab';
 import classNames from 'classnames';
-import './Tabs.css';
 
 class Tabs extends Component {
   static propTypes = {

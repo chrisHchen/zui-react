@@ -14,6 +14,7 @@
     cursor: pointer;
     min-width: 100px;
     box-sizing: inherit;
+    color: var(--color-base-text);
 
     &:hover{
       background-color: var(--color-base-light);

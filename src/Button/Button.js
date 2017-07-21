@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReinforcedButton from '../internal/ReinforcedButton';
 import Popover from '../Popover';
 import classNames from 'classnames';
-import './Button.css';
 
 class Button extends Component {
   static propTypes = {

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classNames';
-import './Checkbox.css';
 import CheckboxOutline from '../svg-embedded/check-box-outline-blank';
 import CheckboxChecked from '../svg-embedded/check-box';
 

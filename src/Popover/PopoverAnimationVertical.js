@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import propTypes from '../util/propTypes';
 import Shade from '../Shade';
-import './PopoverAnimationVertical.css';
 
 class PopoverAnimationVertical extends Component {
   static propTypes = {

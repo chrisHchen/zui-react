@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import propTypes from '../util/propTypes';
 import classNames from 'classnames';
-import './Shade.css';
 
 class Shade extends Component {
   static propTypes = {

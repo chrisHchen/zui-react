@@ -48,7 +48,7 @@
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 60px, rgba(0, 0, 0, 0.22) 0px 15px 20px;
   }
 
-  /*zIndex*/
+  /*z-index*/
   --message-zIndex: 2050;
   --modal-layer-zIndex: 2000;
   --dialog-zIndex: 1500;
@@ -64,10 +64,4 @@
   /*toggle*/
   --toggle-default-track-color: rgb(189, 189, 189);
   --toggle-default-thumb-color: rgb(245, 245, 245);
-}
-
-body{
-  font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
 }

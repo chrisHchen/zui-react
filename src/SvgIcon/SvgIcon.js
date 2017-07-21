@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import './SvgIcon.css';
 import classNames from 'classnames';
 
 class SvgIcon extends Component {

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import './LinearProgress.css';
 import classNames from 'classnames';
 
 function getRelativeValue(value, min, max) {
