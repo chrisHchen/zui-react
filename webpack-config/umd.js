@@ -1,20 +1,29 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const entries = require('../script/find-entry')();
+const webpack = require('webpack');
 
 const plugins = [
   new CleanWebpackPlugin(path.join('build'), {
     root: path.join(__dirname, '../'),
   }),
-  new ExtractTextPlugin('[name]/[name].css'),
+  new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false,
+    },
+  }),
+  new ExtractTextPlugin('zui-theme-default.css'),
 ];
 const postcssPlugins = [
   require('postcss-import')(),
   require('postcss-cssnext')(),
+  require('precss')(),
   require('cssnano')(),
 ];
-
+const entries = {
+  ['zui-react.umd.js']: path.join(__dirname, '../src/index.js'),
+  ['zui-theme-default.css']: path.join(__dirname, '../src/style.js'),
+};
 module.exports = {
   entry: entries,
   externals: [
@@ -27,7 +36,9 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../build'),
-    filename: '[name]/[name].js',
+    filename: '[name]',
+    library: 'zui-react',
+    libraryTarget: 'umd',
   },
   plugins: plugins,
   stats: {
