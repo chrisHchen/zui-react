@@ -22,7 +22,7 @@ module.exports = {
     extensions: ['.js', '.json'],
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, '../build'),
     filename: '[name].js',
   },
   plugins: plugins,

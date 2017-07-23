@@ -4,7 +4,6 @@
   "description": "zui in react version",
   "main": "./src/index.js",
   "scripts": {
-    "test": "",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack-config/dev.js --progress",
     "build:umd": "cross-env NODE_ENV=production webpack --config webpack-config/umd.js",
     "build:babel": "cross-env NODE_ENV=production babel ./src --out-dir ./build --ignore spec.js,test/*.js",
@@ -18,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "tt"
+    "url": "https://github.com/chrisHchen/zui-react"
   },
   "keywords": [
     "react",
