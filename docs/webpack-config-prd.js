@@ -8,6 +8,11 @@ const plugins = [
   new CleanWebpackPlugin(path.join(__dirname, './build'), {
     root: path.join(__dirname, './'),
   }),
+  new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify('production'),
+    },
+  }),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false,
