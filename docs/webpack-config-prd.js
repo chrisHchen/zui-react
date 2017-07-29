@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 
 const plugins = [
-  new CleanWebpackPlugin(path.join(__dirname, './build'), {
+  new CleanWebpackPlugin(path.join(__dirname, './static'), {
     root: path.join(__dirname, './'),
   }),
   new webpack.DefinePlugin({

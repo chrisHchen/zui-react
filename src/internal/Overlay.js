@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import AutoLockScrolling from './AutoLockScrolling';
 import classNames from 'classnames';
-import './Overlay.css';
 
 class Overlay extends Component {
   static propTypes = {

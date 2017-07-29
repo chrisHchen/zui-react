@@ -1,22 +1,25 @@
 import React, {Component} from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import Button from 'zui-react/Button';
 import 'zui-react/zui-theme-default.css';
+import {HashRouter} from 'react-router-dom';
+import Drawer from 'zui-react/Drawer';
+import RoutesInDrawer from './RoutesInDrawer';
 
 injectTapEventPlugin();
 
 class Router extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      open: false,
-    };
   }
   render() {
     return (
-      <div>
-        <Button label="确定按钮" />
-      </div>
+      <HashRouter>
+        <div>
+          <Drawer open={true}>
+            <RoutesInDrawer />
+          </Drawer>
+        </div>
+      </HashRouter>
     );
   }
 }

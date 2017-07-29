@@ -1,6 +1,6 @@
 {
   "name": "zui-react",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "zui in react version",
   "main": "./src/index.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "build:umd": "cross-env NODE_ENV=production webpack --config webpack-config/umd.js",
     "build:babel": "cross-env NODE_ENV=production babel ./src --out-dir ./build --ignore spec.js,test/*.js",
     "build:copy": "babel-node ./script/copy.js",
-    "build": "npm run build:umd && npm run build:babel && npm run build:copy"
+    "build": "npm run build:umd && npm run build:babel && npm run build:copy",
+    "pub": "npm run build && npm publish ./build"
   },
   "peerDependencies": {
     "react": "^15.6.0",
