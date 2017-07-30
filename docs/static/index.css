@@ -368,4 +368,29 @@
 
   /*others*/
 
-  /*toggle*/}.zui-toggle{cursor:pointer;position:relative;display:inline-block;height:auto;width:100%;margin-bottom:16px;overflow:hidden}.zui-toggle .zui-toggle-checkbox{position:absolute;cursor:inherit;pointer-events:all;opacity:0;width:100%;height:100%;z-index:2;left:0px;box-sizing:border-box;padding:0px;margin:0px}
+  /*toggle*/}.zui-toggle{cursor:pointer;position:relative;display:inline-block;height:auto;width:100%;margin-bottom:16px;overflow:hidden}.zui-toggle .zui-toggle-checkbox{position:absolute;cursor:inherit;pointer-events:all;opacity:0;width:100%;height:100%;z-index:2;left:0px;box-sizing:border-box;padding:0px;margin:0px}a, a:active{
+  color: inherit;
+  text-decoration: none;
+}
+
+.docs-menuItem{
+  position: absolute;
+  top: 0;
+  left: 34px;
+  height: 20px;
+  width: 100%;
+  line-height: 32px
+}
+
+.docs-title{
+  font-weight: 400;
+  color: #1f2f3d;
+  font-size: 22px;
+  margin: 45px 0 15px;
+}
+
+.docs-desc{
+  font-size: 14px;
+  color: #5e6d82;
+  line-height: 1.5em;
+}

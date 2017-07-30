@@ -4,6 +4,7 @@ import 'zui-react/zui-theme-default.css';
 import {HashRouter} from 'react-router-dom';
 import Drawer from 'zui-react/Drawer';
 import RoutesInDrawer from './RoutesInDrawer';
+import Comps from './comps/index';
 
 injectTapEventPlugin();
 
@@ -18,6 +19,9 @@ class Router extends Component {
           <Drawer open={true}>
             <RoutesInDrawer />
           </Drawer>
+          <div style={{marginLeft: '250px', padding: '20px'}}>
+            <Comps />
+          </div>
         </div>
       </HashRouter>
     );
