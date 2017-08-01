@@ -31,6 +31,7 @@ module.exports = {
     path: path.resolve(__dirname, './static'),
     filename: '[name].js',
     chunkFilename: '[name].js',
+    publicPath: './static',
   },
   plugins: plugins,
   stats: {
