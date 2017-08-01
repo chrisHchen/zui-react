@@ -14,8 +14,8 @@ export default {
   offset(el) {
     const rect = el.getBoundingClientRect();
     return {
-      top: rect.top + document.body.scrollTop,
-      left: rect.left + document.body.scrollLeft,
+      top: rect.top + (document.documentElement.scrollTop || document.body.scrollTop),
+      left: rect.left + (document.documentElement.scrollLeft || document.body.scrollLeft),
     };
   },
 
