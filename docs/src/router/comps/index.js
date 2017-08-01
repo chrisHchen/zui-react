@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import ButtonPage from './button';
-import {Route} from 'react-router-dom';
+import Bundle from '../bundle';
 
 class Comps extends Component {
   render() {
     return (
       <div>
-        <Route component={ButtonPage} path="/button" />
+        <Bundle load={() => import('./home')} path="/" exact={true} />
+        <Bundle load={() => import('./installation')} path="/installation" />
+        <Bundle load={() => import('./button')} path="/button" />
       </div>
     );
   }

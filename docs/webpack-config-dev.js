@@ -13,6 +13,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './build'),
     filename: '[name].js',
+    chunkFilename: '[name].js',
   },
   plugins: plugins,
   devServer: {

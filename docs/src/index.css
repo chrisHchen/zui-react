@@ -7,7 +7,7 @@ a, a:active{
   position: absolute;
   top: 0;
   left: 34px;
-  height: 20px;
+  height: 100%;
   width: 100%;
   line-height: 32px
 }
@@ -23,4 +23,8 @@ a, a:active{
   font-size: 14px;
   color: #5e6d82;
   line-height: 1.5em;
+}
+
+.docs-color-green{
+  color: #13ce66;
 }

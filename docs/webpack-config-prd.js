@@ -18,6 +18,7 @@ const plugins = [
       warnings: false,
     },
   }),
+
   new ExtractTextPlugin('index.css'),
 ];
 
@@ -29,6 +30,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './static'),
     filename: '[name].js',
+    chunkFilename: '[name].js',
   },
   plugins: plugins,
   stats: {
