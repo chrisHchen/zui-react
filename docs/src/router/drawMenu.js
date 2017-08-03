@@ -10,6 +10,9 @@ export default [{
 }, {
   title: '组件',
   menus: [{
+    to: '/avatar',
+    name: 'Avatar',
+  }, {
     to: '/button',
     name: 'Button',
   }],
