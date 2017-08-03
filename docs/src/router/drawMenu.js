@@ -15,5 +15,11 @@ export default [{
   }, {
     to: '/button',
     name: 'Button',
+  }, {
+    to: '/fonticon',
+    name: 'FontIcon',
+  }, {
+    to: '/svgicon',
+    name: 'SvgIcon',
   }],
 }];

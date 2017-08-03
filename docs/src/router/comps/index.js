@@ -10,6 +10,8 @@ class Comps extends Component {
         <Bundle load={() => import('./quickstart')} path="/quickstart" />
         <Bundle load={() => import('./avatar')} path="/avatar" />
         <Bundle load={() => import('./button')} path="/button" />
+        <Bundle load={() => import('./fontIcon')} path="/fonticon" />
+        <Bundle load={() => import('./svgIcon')} path="/svgicon" />
       </div>
     );
   }

@@ -54,7 +54,7 @@ class AvatorPage extends Component {
         <Avatar
           src="https://facebook.github.io/react/img/logo.svg"
         />
-        <pre className="javascript">
+        <pre className="react">
           {
             example
           }
@@ -65,15 +65,15 @@ class AvatorPage extends Component {
           size={30}
           style={{marginLeft: '20px'}}
         />
-        <pre className="javascript">
+        <pre className="react">
           {example1}
         </pre>
         <h3 className="docs-title">设置文字</h3>
         <Avatar>TAT</Avatar>
-        <pre className="javascript">
+        <pre className="react">
           {'<Avatar>TAT</Avatar>'}
         </pre>
-        <pre className="javascript">
+        <pre className="react">
           {example1}
         </pre>
         <h3 className="docs-title">以FontIcon为内容</h3>
@@ -92,7 +92,7 @@ class AvatorPage extends Component {
           color="black"
           style={{marginLeft: '20px'}}
         />
-        <pre className="javascript">
+        <pre className="react">
           {example2}
         </pre>
         <h3 className="docs-title">以SvgIcon为内容</h3>
@@ -103,7 +103,7 @@ class AvatorPage extends Component {
             </SvgIcon>
           }
         />
-        <pre className="javascript">
+        <pre className="react">
           {example3}
         </pre>
       </div>
