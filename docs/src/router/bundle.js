@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Route} from 'react-router-dom';
+import Loading from './loading';
 import { withRouter } from 'react-router';
-
 class Bundle extends Component {
   state = {
     // short for "module" but that's a keyword in js, so "mod"
@@ -18,9 +18,6 @@ class Bundle extends Component {
     if (nextProps.location.pathname === this.props.path) { // eslint-disable-line react/prop-types
       this.load(nextProps);
     }
-    // if (nextProps.load !== this.props.load) { // eslint-disable-line react/prop-types
-    //   this.load(nextProps);
-    // }
   }
 
   load(props) {
@@ -41,7 +38,13 @@ class Bundle extends Component {
       ...other
     } = this.props;
 
-    return this.state.mod ? <Route component={this.state.mod} {...other} /> : null;
+    return (
+      <Route
+        render={(props) => { // eslint-disable-line no-unused-vars
+          return this.state.mod ? React.createElement(this.state.mod) : <Loading />;
+        }} {...other}
+      />
+    );
   }
 }
 
