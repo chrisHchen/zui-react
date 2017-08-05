@@ -12,6 +12,7 @@ import './Dropdown/DropdownMenu.css';
 import './Dropdown/DropdownMenuItem';
 import './FontIcon/FontIcon.css';
 import './internal/ModalLayer.css';
+import './internal/Overlay.css';
 import './LinearProgress/LinearProgress.css';
 import './List/List.css';
 import './List/ListItem.css';
