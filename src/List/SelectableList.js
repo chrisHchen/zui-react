@@ -15,6 +15,10 @@ class SelectableList extends Component {
     ]),
     onChange: PropTypes.func,
     selectedClassName: PropTypes.string,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
   }
 
   state = {
@@ -22,9 +26,22 @@ class SelectableList extends Component {
   }
 
   componentWillMount() {
+    const {value, defaultValue} = this.props;
     this.setState({
-      selectedValue: this.props.defaultValue,
+      selectedValue: value || defaultValue,
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.value !== undefined && nextProps.value !== this.props.value) {
+      console.log(nextProps.value);
+      if (this.props.onChange) {
+        this.props.onChange(event, nextProps.value);
+      }
+      this.setState({
+        selectedValue: nextProps.value,
+      });
+    }
   }
 
   handleChange = (event, value) => {
