@@ -33,7 +33,8 @@ class SelectableList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== undefined && nextProps.value !== this.props.value) {
+    // update nomatter nextProps.value equal or not equal to this.props.value
+    if (nextProps.value !== undefined) {
       console.log(nextProps.value);
       if (this.props.onChange) {
         this.props.onChange(event, nextProps.value);
