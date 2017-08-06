@@ -1,6 +1,9 @@
 export default [{
   title: '开发指南',
   menus: [{
+    to: '/',
+    name: '首页',
+  }, {
     to: '/installation',
     name: '安装',
   }, {
@@ -22,10 +25,13 @@ export default [{
     to: '/svgicon',
     name: 'SvgIcon',
   }, {
-    to: '/popover',
-    name: 'Popover',
-  }, {
     to: '/drawer',
     name: 'Drawer',
+  }, {
+    to: '/list',
+    name: 'List',
+  }, {
+    to: '/popover',
+    name: 'Popover',
   }],
 }];

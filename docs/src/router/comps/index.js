@@ -6,6 +6,7 @@ class Comps extends Component {
     return (
       <div>
         <Bundle load={() => import('./home')} path="/" exact={true} />
+        <Bundle load={() => import('./home')} path="/home" exact={true} />
         <Bundle load={() => import('./installation')} path="/installation" />
         <Bundle load={() => import('./quickstart')} path="/quickstart" />
         <Bundle load={() => import('./avatar')} path="/avatar" />
@@ -14,6 +15,7 @@ class Comps extends Component {
         <Bundle load={() => import('./svgIcon')} path="/svgicon" />
         <Bundle load={() => import('./popover')} path="/popover" />
         <Bundle load={() => import('./drawer')} path="/drawer" />
+        <Bundle load={() => import('./list')} path="/list" />
       </div>
     );
   }
