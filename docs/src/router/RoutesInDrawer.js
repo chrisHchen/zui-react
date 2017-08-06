@@ -14,11 +14,15 @@ class RoutesInDrawer extends Component {
               nestedItems={
                 group.menus.map((menu, index) => (
                   <ListItem key={menu.name + index}>
+                    {/* this is placeholder...TODO*/}
+                    <div>&nbsp;</div>
                     <Link to={menu.to} className="docs-menuItem">{menu.name}</Link>
                   </ListItem>
                 ))
               }
-            >{group.title}</ListItem>
+            >
+              {group.title}
+            </ListItem>
           ))
         }
       </List>

@@ -21,5 +21,11 @@ export default [{
   }, {
     to: '/svgicon',
     name: 'SvgIcon',
+  }, {
+    to: '/popover',
+    name: 'Popover',
+  }, {
+    to: '/drawer',
+    name: 'Drawer',
   }],
 }];

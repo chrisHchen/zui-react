@@ -12,6 +12,8 @@ class Comps extends Component {
         <Bundle load={() => import('./button')} path="/button" />
         <Bundle load={() => import('./fontIcon')} path="/fonticon" />
         <Bundle load={() => import('./svgIcon')} path="/svgicon" />
+        <Bundle load={() => import('./popover')} path="/popover" />
+        <Bundle load={() => import('./drawer')} path="/drawer" />
       </div>
     );
   }
