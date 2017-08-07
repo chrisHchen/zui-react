@@ -13,6 +13,7 @@ class Select extends Component {
       PropTypes.number,
       PropTypes.string,
     ]),
+    hintText: PropTypes.string,
     onChange: PropTypes.func,
     onRequestClose: PropTypes.func,
     options: PropTypes.array.isRequired,
@@ -111,6 +112,7 @@ class Select extends Component {
   render() {
     const {
       options,
+      hintText,
     } = this.props;
 
     const anchor = (
@@ -119,7 +121,7 @@ class Select extends Component {
         readOnly="readonly"
         appendIcon={true}
         value={this.findOptionValueByKey(options, this.state.value)}
-        hintText="请输入你的姓名"
+        hintText={hintText}
       />
     );
 
