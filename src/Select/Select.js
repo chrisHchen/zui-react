@@ -114,9 +114,11 @@ class Select extends Component {
       options,
       hintText,
     } = this.props;
+    const uniqueId = Math.floor(Math.random() * 0xFFFF).toString();
 
     const anchor = (
       <TextField
+        id={uniqueId}
         style={{cursor: 'pointer'}}
         readOnly="readonly"
         appendIcon={true}
