@@ -32,7 +32,7 @@ class RoutesInDrawer extends Component {
         {
           drawMenu.map((group) => (
             <ListItem
-              disableTouchRipple={false}
+              disableTouchRipple={!!group.link}
               key={group.title}
               value={group.title}
               nestedItems={
@@ -49,7 +49,14 @@ class RoutesInDrawer extends Component {
                 ))
               }
             >
-              {group.title}
+              {
+                group.link ?
+                  <div>
+                    <div>&nbsp;</div>
+                    <a href={group.link} className="docs-menuItem">{group.title}</a>
+                  </div> :
+                  group.title
+              }
             </ListItem>
           ))
         }

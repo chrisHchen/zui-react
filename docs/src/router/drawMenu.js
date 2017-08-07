@@ -16,8 +16,14 @@ export default [{
     to: '/avatar',
     name: 'Avatar',
   }, {
+    to: '/badge',
+    name: 'Badge',
+  }, {
     to: '/button',
     name: 'Button',
+  }, {
+    to: '/dropdown',
+    name: 'Dropdown',
   }, {
     to: '/fonticon',
     name: 'FontIcon',
@@ -33,5 +39,42 @@ export default [{
   }, {
     to: '/popover',
     name: 'Popover',
+  }, {
+    to: '/tabs',
+    name: 'Tabs',
+  }, {
+    to: '/toggle',
+    name: 'Toggle',
+  }, {
+    to: '/checkbox',
+    name: 'Checkbox',
+  }, {
+    to: '/radioButton',
+    name: 'RadioButton',
+  }, {
+    to: '/textField',
+    name: 'TextField',
+  }, {
+    to: '/select',
+    name: 'Select',
+  }, {
+    to: '/progress',
+    name: 'Progress',
+  }, {
+    to: '/message',
+    name: 'Message',
+  }, {
+    to: '/dialog',
+    name: 'Dialog',
   }],
+}, {
+  title: '自定义样式',
+  menus: [{
+    to: '/theme',
+    name: 'Theme',
+  }],
+}, {
+  title: 'GitHub',
+  menus: [],
+  link: 'https://github.com/chrisHchen/zui-react.git',
 }];

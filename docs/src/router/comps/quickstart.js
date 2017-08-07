@@ -28,6 +28,7 @@ class quickstart extends Component {
             'import React, {Component} from \'react\';' + '\n' +
             'import Button from \'zui-react/Button\';' + '\n' +
             'import injectTapEventPlugin from \'react-tap-event-plugin\';' + '\n' +
+            '//引入全局样式' + '\n' +
             'import \'zui-react/zui-theme-default.css\';' + '\n' +
             '\n' +
             'injectTapEventPlugin();' +

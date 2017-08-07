@@ -16,6 +16,18 @@ class Comps extends Component {
         <Bundle load={() => import('./popover')} path="/popover" />
         <Bundle load={() => import('./drawer')} path="/drawer" />
         <Bundle load={() => import('./list')} path="/list" />
+        <Bundle load={() => import('./dropdown')} path="/dropdown" />
+        <Bundle load={() => import('./tabs')} path="/tabs" />
+        <Bundle load={() => import('./toggle')} path="/toggle" />
+        <Bundle load={() => import('./checkbox')} path="/checkbox" />
+        <Bundle load={() => import('./radiobutton')} path="/radioButton" />
+        <Bundle load={() => import('./textfield')} path="/textField" />
+        <Bundle load={() => import('./progress')} path="/progress" />
+        <Bundle load={() => import('./badge')} path="/badge" />
+        <Bundle load={() => import('./message')} path="/message" />
+        <Bundle load={() => import('./dialog')} path="/dialog" />
+        <Bundle load={() => import('./select')} path="/select" />
+        <Bundle load={() => import('./theme')} path="/theme" />
       </div>
     );
   }
