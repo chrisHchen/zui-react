@@ -53,7 +53,7 @@ class RoutesInDrawer extends Component {
                 group.link ?
                   <div>
                     <div>&nbsp;</div>
-                    <a href={group.link} className="docs-menuItem">{group.title}</a>
+                    <a href={group.link} className="docs-menuItem" style={{left: '16px'}}>{group.title}</a>
                   </div> :
                   group.title
               }
